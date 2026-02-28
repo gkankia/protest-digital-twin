@@ -6,6 +6,8 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
 <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -16,13 +18,100 @@ body { margin: 0; padding: 0; }
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
 
-    const BUS_STOP_URL = 'https://raw.githubusercontent.com/gkankia/protest-digital-twin/main/Digital%20Twin/models/bus_stop/scene.gltf';
+    const BASE_URL = 'https://raw.githubusercontent.com/gkankia/protest-digital-twin/main/Digital%20Twin/models/';
+
+    // ================================================================
+    //  MODEL DEFINITIONS
+    //  url: filename in your /models/ folder
+    //  scale: size in meters
+    //  defaultRotation: base Y rotation — adjust per instance with rotationY
+    // ================================================================
+    const MODELS = {
+        busStop: {
+            url: BASE_URL + 'bus_stop.glb',
+            scale: { x: 2, y: 2, z: 2 },
+        },
+        bus: {
+            url: BASE_URL + 'bus.glb',
+            scale: { x: 2, y: 2, z: 2 },   // adjust scale to match real size
+        },
+        fordtransit: {
+            url: BASE_URL + 'ford_transit.glb',
+            scale: { x: 1.5, y: 1.5, z: 1.5 },
+        },
+        skoda: {
+            url: BASE_URL + 'skoda.glb',
+            scale: { x: 1.5, y: 1.5, z: 1.5 },
+        },
+        policecar: {
+            url: BASE_URL + 'police_car.glb',
+            scale: { x: 1.5, y: 1.5, z: 1.5 },
+        },
+        policeman: {
+            url: BASE_URL + 'policeman.glb',
+            scale: { x: 1.7, y: 1.7, z: 1.7 },
+        },
+    };
+
+    // ================================================================
+    //  INSTANCES
+    //  model: key from MODELS above
+    //  coords: [lng, lat]
+    //  rotationY: compass direction in degrees
+    //    0   = north
+    //    90  = east
+    //    180 = south
+    //    270 = west
+    //    use -63 / 117 for your street angle
+    // ================================================================
+    const instances = [
+
+        // ── BUS STOPS ───────────────────────────────────────────────
+        { id: 'bus-stop-1-გიმნაზია',  model: 'busStop', coords: [44.798461, 41.697794], rotationY: -63  },
+        { id: 'bus-stop-2-ქაშუეთი',   model: 'busStop', coords: [44.798742, 41.697983], rotationY: -243 },
+
+        // ── BUSES ───────────────────────────────────────────────────
+        { id: 'bus-1-north',  model: 'bus', coords: [44.798500, 41.697900], rotationY: 0   },
+        { id: 'bus-2-east',   model: 'bus', coords: [44.798600, 41.697900], rotationY: 90  },
+        { id: 'bus-3-south',  model: 'bus', coords: [44.798700, 41.697900], rotationY: 180 },
+        { id: 'bus-4-west',   model: 'bus', coords: [44.798800, 41.697900], rotationY: 270 },
+
+        // ── FORD-TRANSIT ────────────────────────────────────────────────────
+        { id: 'fordtransit-1-north',  model: 'fordtransit', coords: [44.798500, 41.697800], rotationY: 0   },
+        { id: 'fordtransit-2-east',   model: 'fordtransit', coords: [44.798600, 41.697800], rotationY: 90  },
+        { id: 'fordtransit-3-south',  model: 'fordtransit', coords: [44.798700, 41.697800], rotationY: 180 },
+        { id: 'fordtransit-4-west',   model: 'fordtransit', coords: [44.798800, 41.697800], rotationY: 270 },
+
+        // ── SKODA ────────────────────────────────────────────────────
+        { id: 'skoda-1-north',  model: 'skoda', coords: [44.798500, 41.697800], rotationY: 0   },
+        { id: 'skoda-2-east',   model: 'skoda', coords: [44.798600, 41.697800], rotationY: 90  },
+        { id: 'skoda-3-south',  model: 'skoda', coords: [44.798700, 41.697800], rotationY: 180 },
+        { id: 'skoda-4-west',   model: 'skoda', coords: [44.798800, 41.697800], rotationY: 270 },
+
+        // ── POLICE CAR ────────────────────────────────────────────────────
+        { id: 'policecar-1-north',  model: 'policecar', coords: [44.798500, 41.697800], rotationY: 0   },
+        { id: 'policecar-2-east',   model: 'policecar', coords: [44.798600, 41.697800], rotationY: 90  },
+        { id: 'policecar-3-south',  model: 'policecar', coords: [44.798700, 41.697800], rotationY: 180 },
+        { id: 'policecar-4-west',   model: 'policecar', coords: [44.798800, 41.697800], rotationY: 270 },
+
+        // ── POLICEMEN ───────────────────────────────────────────────
+        { id: 'police-1-north', model: 'policeman', coords: [44.798500, 41.697700], rotationY: 0   },
+        { id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
+        { id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
+        { id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
+
+        // ── TEMPLATE: copy to add more ──────────────────────────────
+        // { id: 'unique-id', model: 'car', coords: [44.799, 41.698], rotationY: 0 },
+    ];
+    // ================================================================
 
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/jorjone90/cmm58myuk000t01r063yb09t7',
         projection: 'globe',
-        zoom: 18,
+        zoom: 17.8,
+        minZoom: 17.5,
+        maxZoom: 19.5,
         center: [44.799, 41.697],
         pitch: 52.76,
         bearing: -132.62,
@@ -32,78 +121,60 @@ body { margin: 0; padding: 0; }
     map.addControl(new mapboxgl.NavigationControl());
     map.scrollZoom.enable();
 
+    const tb = (window.tb = new Threebox(
+        map,
+        map.getCanvas().getContext('webgl'),
+        { defaultLights: true }
+    ));
+
+    // Load all instances sequentially to avoid Threebox caching conflicts
+    function loadAllModels(instances, onDone) {
+        const loaded = [];
+
+        function loadNext(index) {
+            if (index >= instances.length) {
+                onDone(loaded);
+                return;
+            }
+
+            const inst = instances[index];
+            const modelDef = MODELS[inst.model];
+
+            tb.loadObj({
+                obj: modelDef.url + '?id=' + inst.id,  // unique URL per instance
+                type: 'gltf',
+                scale: modelDef.scale,
+                units: 'meters',
+                rotation: { x: 90, y: inst.rotationY, z: 0 },
+                anchor: 'bottom',
+            }, (model) => {
+                model.setCoords([inst.coords[0], inst.coords[1], 0]);
+                loaded.push(model);
+                console.log(`✅ Loaded: ${inst.id}`);
+                loadNext(index + 1);  // load next only after this one is done
+            });
+        }
+
+        loadNext(0);
+    }
+
     map.on('style.load', () => {
         map.setFog({});
 
-        // Register the model
-        map.addModel('bus-stop', BUS_STOP_URL);
-
-        // GeoJSON source with one feature per bus stop
-        map.addSource('street-furniture', {
-            type: 'geojson',
-            data: {
-                type: 'FeatureCollection',
-                features: [
-                    {
-                        type: 'Feature',
-                        id: 1,
-                        properties: {
-                            model: 'bus-stop',
-                            rotation: -63,
-                            label: 'Bus Stop - გიმნაზია'
-                        },
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [44.798461, 41.697794]
-                        }
-                    },
-                    {
-                        type: 'Feature',
-                        id: 2,
-                        properties: {
-                            model: 'bus-stop',
-                            rotation: 70,
-                            label: 'Bus Stop - ქაშუეთი'
-                        },
-                        geometry: {
-                            type: 'Point',
-                            coordinates: [44.798742, 41.697983]
-                        }
-                    },
-                    // ── TEMPLATE: add new objects here ──
-                    // {
-                    //     type: 'Feature',
-                    //     id: 3,
-                    //     properties: {
-                    //         model: 'bus-stop',
-                    //         rotation: 0,
-                    //         label: 'Bus Stop 3'
-                    //     },
-                    //     geometry: {
-                    //         type: 'Point',
-                    //         coordinates: [44.800, 41.698]
-                    //     }
-                    // },
-                ]
-            }
+        loadAllModels(instances, (allModels) => {
+            map.addLayer({
+                id: 'all-models',
+                type: 'custom',
+                renderingMode: '3d',
+                onAdd() {
+                    allModels.forEach(model => tb.add(model));
+                    console.log(`✅ All ${allModels.length} models added to map`);
+                },
+                render() {
+                    tb.update();
+                }
+            });
         });
-
-        // Model layer
-        map.addLayer({
-            id: 'street-furniture-layer',
-            type: 'model',
-            source: 'street-furniture',
-            layout: {
-                'model-id': ['get', 'model'],
-            },
-            paint: {
-                'model-scale': [1, 1, 1],        // adjust if too small e.g. [3, 3, 3]
-                'model-rotation': [0, 0, ['get', 'rotation']],
-                'model-opacity': 1,
-            }
-        });
-
-        console.log('✅ Models added');
     });
 </script>
 </body>
