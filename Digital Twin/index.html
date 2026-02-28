@@ -6,6 +6,8 @@
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
 <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
@@ -15,23 +17,86 @@ body { margin: 0; padding: 0; }
 <div id="map"></div>
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
+
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/jorjone90/cmm58myuk000t01r063yb09t7', // Use the standard style for the map
-        projection: 'globe', // display the map as a globe
-        zoom: 18, // initial zoom level, 0 is the world view, higher values zoom in
-        center: [44.799, 41.697], // center the map on this longitude and latitude
+        style: 'mapbox://styles/jorjone90/cmm58myuk000t01r063yb09t7',
+        projection: 'globe',
+        zoom: 18,
+        center: [44.799, 41.697],
         pitch: 52.76,
         bearing: -132.62,
+        antialias: true,
     });
 
     map.addControl(new mapboxgl.NavigationControl());
     map.scrollZoom.enable();
 
+    const tb = (window.tb = new Threebox(
+        map,
+        map.getCanvas().getContext('webgl'),
+        { defaultLights: true }
+    ));
+
+    // ================================================================
+    //  SCENE OBJECTS — add new models here
+    // ================================================================
+    const sceneObjects = [
+        {
+            id: 'bus-stop',
+            url: 'https://raw.githubusercontent.com/gkankia/protest-digital-twin/refs/heads/main/Digital%20Twin/models/bus_stop/scene.gltf',
+            origin: [44.798461, 41.697794],                // [lng, lat]
+            scale: 1,
+            rotation: { x: 90, y: 0, z: 0 },
+            anchor: 'bottom',
+        },
+
+        // ── TEMPLATE: copy this block to add a new object ──
+        // {
+        //     id: 'traffic-light',
+        //     url: 'https://raw.githubusercontent.com/.../traffic_light.gltf',
+        //     coords: [44.800, 41.698],
+        //     scale: 1,
+        //     rotation: { x: 90, y: 0, z: 0 },
+        //     anchor: 'bottom',
+        // },
+    ];
+    // ================================================================
+
     map.on('style.load', () => {
-        map.setFog({}); // Set the default atmosphere style
+        map.setFog({});
+
+        sceneObjects.forEach(obj => {
+            map.addLayer({
+                id: obj.id,
+                type: 'custom',
+                renderingMode: '3d',
+
+                onAdd() {
+                    console.log(`Layer added: ${obj.id}`);
+                    tb.loadObj(
+                        {
+                            obj: obj.url,
+                            type: 'gltf',
+                            scale: { x: obj.scale, y: obj.scale, z: obj.scale },
+                            units: 'meters',
+                            rotation: obj.rotation,
+                            anchor: obj.anchor,
+                        },
+                        (model) => {
+                            model.setCoords(obj.coords);
+                            tb.add(model);
+                            console.log(`✅ Loaded: ${obj.id}`);
+                        }
+                    );
+                },
+
+                render() {
+                    tb.update();
+                }
+            });
+        });
     });
 </script>
-
 </body>
 </html>
