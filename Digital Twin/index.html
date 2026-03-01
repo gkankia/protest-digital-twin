@@ -29,11 +29,11 @@ body { margin: 0; padding: 0; }
     const MODELS = {
         busStop: {
             url: BASE_URL + 'bus_stop.glb',
-            scale: { x: 2, y: 2, z: 2 },
+            scale: { x: 2, y: 2, z: 0 },
         },
         bus: {
-            url: BASE_URL + 'bus.glb',
-            scale: { x: 2, y: 2, z: 2 },   // adjust scale to match real size
+            url: BASE_URL + 'bus_new.glb',
+            scale: { x: 5, y: 5, z: 0 },   // adjust scale to match real size
         },
         fordtransit: {
             url: BASE_URL + 'ford_transit_new.glb',
@@ -45,11 +45,11 @@ body { margin: 0; padding: 0; }
         },
         policecar: {
             url: BASE_URL + 'police_car.glb',
-            scale: { x: 1, y: 1, z: 1 },
+            scale: { x: 1, y: 1, z: 0 },
         },
         policeman: {
             url: BASE_URL + 'policeman.glb',
-            scale: { x: 1.7, y: 1.7, z: 1.7 },
+            scale: { x: 1.7, y: 1.7, z: 0 },
         },
     };
 
@@ -71,7 +71,7 @@ body { margin: 0; padding: 0; }
         { id: 'bus-stop-2-ქაშუეთი',   model: 'busStop', coords: [44.798742, 41.697983], rotationY: -243 },
 
         // ── BUSES ───────────────────────────────────────────────────
-        { id: 'bus-1-north',  model: 'bus', coords: [44.798500, 41.697900], rotationY: 0   },
+        { id: 'bus-1-north',  model: 'bus', coords: [44.798500, 41.697900, 0], rotationY: 0   },
         //{ id: 'bus-2-east',   model: 'bus', coords: [44.798600, 41.697900], rotationY: 90  },
         //{ id: 'bus-3-south',  model: 'bus', coords: [44.798700, 41.697900], rotationY: 180 },
         //{ id: 'bus-4-west',   model: 'bus', coords: [44.798800, 41.697900], rotationY: 270 },
