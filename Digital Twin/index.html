@@ -53,7 +53,7 @@ body { margin: 0; padding: 0; }
         },
         imeditv: {
             url: BASE_URL + 'imedi_drone.glb',
-            scale: { x: 1.7, y: 1.7, z: 0 },
+            scale: { x: 2.5, y: 2.5, z: 2.5 },
         },
     };
 
@@ -75,26 +75,26 @@ body { margin: 0; padding: 0; }
         { id: 'bus-stop-2-ქაშუეთი',   model: 'busStop', coords: [44.798742, 41.697983], rotationY: -243 },
 
         // ── BUSES ───────────────────────────────────────────────────
-        { id: 'bus-1-north',  model: 'bus', coords: [44.798445, 41.697900, 0], rotationY: -155   },
-        { id: 'bus-2-east',   model: 'bus', coords: [44.798675, 41.697900, 0], rotationY: 25  },
+        { id: 'bus-1-north',  model: 'bus', coords: [44.798445, 41.697900], rotationY: -155   },
+        { id: 'bus-2-east',   model: 'bus', coords: [44.798675, 41.697900], rotationY: 25  },
         //{ id: 'bus-3-south',  model: 'bus', coords: [44.798700, 41.697900], rotationY: 180 },
         //{ id: 'bus-4-west',   model: 'bus', coords: [44.798800, 41.697900], rotationY: 270 },
 
         // ── FORD-TRANSIT ────────────────────────────────────────────────────
-        { id: 'fordtransit-1-north',  model: 'fordtransit', coords: [44.798500, 41.697800], rotationY: 0   },
-        //{ id: 'fordtransit-2-east',   model: 'fordtransit', coords: [44.798600, 41.697800], rotationY: 90  },
+        { id: 'fordtransit-1-north',  model: 'fordtransit', coords: [44.798500, 41.697800, 1], rotationY: 63   },
+        { id: 'fordtransit-2-east',   model: 'fordtransit', coords: [44.798620, 41.697320, 1], rotationY: 90  },
         //{ id: 'fordtransit-3-south',  model: 'fordtransit', coords: [44.798700, 41.697800], rotationY: 180 },
         //{ id: 'fordtransit-4-west',   model: 'fordtransit', coords: [44.798800, 41.697800], rotationY: 270 },
 
         // ── SKODA ────────────────────────────────────────────────────
-        { id: 'skoda-1-north',  model: 'skoda', coords: [44.798500, 41.697800, 0], rotationY: 0   },
-        //{ id: 'skoda-2-east',   model: 'skoda', coords: [44.798600, 41.697800], rotationY: 90  },
+        //{ id: 'skoda-1-north',  model: 'skoda', coords: [44.798620, 41.697320], rotationY: 110   },
+        //{ id: 'skoda-2-east',   model: 'skoda', coords: [44.798720, 41.697360], rotationY: 300  },
         //{ id: 'skoda-3-south',  model: 'skoda', coords: [44.798700, 41.697800], rotationY: 180 },
         //{ id: 'skoda-4-west',   model: 'skoda', coords: [44.798800, 41.697800], rotationY: 270 },
 
         // ── POLICE CAR ────────────────────────────────────────────────────
-        { id: 'policecar-1-north',  model: 'policecar', coords: [44.798620, 41.697320, 0], rotationY: 300   },
-        { id: 'policecar-2-east',   model: 'policecar', coords: [44.798720, 41.697360, 0], rotationY: 300  },
+        { id: 'policecar-1-north',  model: 'policecar', coords: [44.798620, 41.697320], rotationY: 300   },
+        { id: 'policecar-2-east',   model: 'policecar', coords: [44.798720, 41.697360], rotationY: 300  },
         //{ id: 'policecar-3-south',  model: 'policecar', coords: [44.798700, 41.697800], rotationY: 180 },
         //{ id: 'policecar-4-west',   model: 'policecar', coords: [44.798800, 41.697800], rotationY: 270 },
 
@@ -105,7 +105,7 @@ body { margin: 0; padding: 0; }
         //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
 
         // ── IMEDITV ───────────────────────────────────────────────
-        { id: 'police-1-north', model: 'imeditv', coords: [44.798500, 41.697700, 15], rotationY: 0   },
+        { id: 'drone-1-north', model: 'imeditv', coords: [44.798500, 41.697700, 20], rotationY: 0   },
         //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
         //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
         //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
@@ -158,7 +158,8 @@ body { margin: 0; padding: 0; }
                 rotation: { x: 90, y: inst.rotationY, z: 0 },
                 anchor: 'bottom',
             }, (model) => {
-                model.setCoords([inst.coords[0], inst.coords[1], 0]);
+                const elevation = map.queryTerrainElevation([inst.coords[0], inst.coords[1]]) || 0;
+                model.setCoords([inst.coords[0], inst.coords[1], inst.coords[2] || 0]);  // ✅ uses altitude if provided, otherwise 0
                 loaded.push(model);
                 console.log(`✅ Loaded: ${inst.id}`);
                 loadNext(index + 1);  // load next only after this one is done
