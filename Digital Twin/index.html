@@ -51,6 +51,10 @@ body { margin: 0; padding: 0; }
             url: BASE_URL + 'policeman.glb',
             scale: { x: 1.7, y: 1.7, z: 0 },
         },
+        imeditv: {
+            url: BASE_URL + 'imedi_drone.glb',
+            scale: { x: 1.7, y: 1.7, z: 0 },
+        },
     };
 
     // ================================================================
@@ -96,6 +100,12 @@ body { margin: 0; padding: 0; }
 
         // ── POLICEMEN ───────────────────────────────────────────────
         { id: 'police-1-north', model: 'policeman', coords: [44.798500, 41.697700], rotationY: 0   },
+        //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
+        //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
+        //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
+
+        // ── IMEDITV ───────────────────────────────────────────────
+        { id: 'police-1-north', model: 'imeditv', coords: [44.798500, 41.697700, 15], rotationY: 0   },
         //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
         //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
         //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
