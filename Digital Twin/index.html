@@ -36,7 +36,7 @@ body { margin: 0; padding: 0; }
             scale: { x: 2, y: 2, z: 2 },   // adjust scale to match real size
         },
         fordtransit: {
-            url: BASE_URL + 'ford_transit.glb',
+            url: BASE_URL + 'ford_transit_new.glb',
             scale: { x: 1.5, y: 1.5, z: 1.5 },
         },
         skoda: {
@@ -45,7 +45,7 @@ body { margin: 0; padding: 0; }
         },
         policecar: {
             url: BASE_URL + 'police_car.glb',
-            scale: { x: 1.5, y: 1.5, z: 1.5 },
+            scale: { x: 1, y: 1, z: 1 },
         },
         policeman: {
             url: BASE_URL + 'policeman.glb',
@@ -72,33 +72,33 @@ body { margin: 0; padding: 0; }
 
         // ── BUSES ───────────────────────────────────────────────────
         { id: 'bus-1-north',  model: 'bus', coords: [44.798500, 41.697900], rotationY: 0   },
-        { id: 'bus-2-east',   model: 'bus', coords: [44.798600, 41.697900], rotationY: 90  },
-        { id: 'bus-3-south',  model: 'bus', coords: [44.798700, 41.697900], rotationY: 180 },
-        { id: 'bus-4-west',   model: 'bus', coords: [44.798800, 41.697900], rotationY: 270 },
+        //{ id: 'bus-2-east',   model: 'bus', coords: [44.798600, 41.697900], rotationY: 90  },
+        //{ id: 'bus-3-south',  model: 'bus', coords: [44.798700, 41.697900], rotationY: 180 },
+        //{ id: 'bus-4-west',   model: 'bus', coords: [44.798800, 41.697900], rotationY: 270 },
 
         // ── FORD-TRANSIT ────────────────────────────────────────────────────
         { id: 'fordtransit-1-north',  model: 'fordtransit', coords: [44.798500, 41.697800], rotationY: 0   },
-        { id: 'fordtransit-2-east',   model: 'fordtransit', coords: [44.798600, 41.697800], rotationY: 90  },
-        { id: 'fordtransit-3-south',  model: 'fordtransit', coords: [44.798700, 41.697800], rotationY: 180 },
-        { id: 'fordtransit-4-west',   model: 'fordtransit', coords: [44.798800, 41.697800], rotationY: 270 },
+        //{ id: 'fordtransit-2-east',   model: 'fordtransit', coords: [44.798600, 41.697800], rotationY: 90  },
+        //{ id: 'fordtransit-3-south',  model: 'fordtransit', coords: [44.798700, 41.697800], rotationY: 180 },
+        //{ id: 'fordtransit-4-west',   model: 'fordtransit', coords: [44.798800, 41.697800], rotationY: 270 },
 
         // ── SKODA ────────────────────────────────────────────────────
-        { id: 'skoda-1-north',  model: 'skoda', coords: [44.798500, 41.697800], rotationY: 0   },
-        { id: 'skoda-2-east',   model: 'skoda', coords: [44.798600, 41.697800], rotationY: 90  },
-        { id: 'skoda-3-south',  model: 'skoda', coords: [44.798700, 41.697800], rotationY: 180 },
-        { id: 'skoda-4-west',   model: 'skoda', coords: [44.798800, 41.697800], rotationY: 270 },
+        { id: 'skoda-1-north',  model: 'skoda', coords: [44.798500, 41.697800, 0], rotationY: 0   },
+        //{ id: 'skoda-2-east',   model: 'skoda', coords: [44.798600, 41.697800], rotationY: 90  },
+        //{ id: 'skoda-3-south',  model: 'skoda', coords: [44.798700, 41.697800], rotationY: 180 },
+        //{ id: 'skoda-4-west',   model: 'skoda', coords: [44.798800, 41.697800], rotationY: 270 },
 
         // ── POLICE CAR ────────────────────────────────────────────────────
-        { id: 'policecar-1-north',  model: 'policecar', coords: [44.798500, 41.697800], rotationY: 0   },
-        { id: 'policecar-2-east',   model: 'policecar', coords: [44.798600, 41.697800], rotationY: 90  },
-        { id: 'policecar-3-south',  model: 'policecar', coords: [44.798700, 41.697800], rotationY: 180 },
-        { id: 'policecar-4-west',   model: 'policecar', coords: [44.798800, 41.697800], rotationY: 270 },
+        { id: 'policecar-1-north',  model: 'policecar', coords: [44.798620, 41.697320, 0], rotationY: 300   },
+        { id: 'policecar-2-east',   model: 'policecar', coords: [44.798720, 41.697360, 0], rotationY: 300  },
+        //{ id: 'policecar-3-south',  model: 'policecar', coords: [44.798700, 41.697800], rotationY: 180 },
+        //{ id: 'policecar-4-west',   model: 'policecar', coords: [44.798800, 41.697800], rotationY: 270 },
 
         // ── POLICEMEN ───────────────────────────────────────────────
         { id: 'police-1-north', model: 'policeman', coords: [44.798500, 41.697700], rotationY: 0   },
-        { id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
-        { id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
-        { id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
+        //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
+        //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
+        //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
 
         // ── TEMPLATE: copy to add more ──────────────────────────────
         // { id: 'unique-id', model: 'car', coords: [44.799, 41.698], rotationY: 0 },
