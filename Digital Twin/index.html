@@ -51,7 +51,6 @@ body { margin: 0; padding: 0; }
     white-space: nowrap;
 }
 
-/* Tooltip */
 #tooltip {
     position: absolute;
     z-index: 20;
@@ -68,7 +67,6 @@ body { margin: 0; padding: 0; }
     line-height: 1.6;
 }
 
-/* Modal */
 #modal-overlay {
     display: none;
     position: fixed;
@@ -233,26 +231,60 @@ body { margin: 0; padding: 0; }
     const BASE_URL = 'https://raw.githubusercontent.com/gkankia/protest-digital-twin/main/Digital%20Twin/models/';
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDOqhSiuRb8x1lKhn6BWj8FTLGw7v-vD5S8edkrPzYF3PrpTSGNouOtZjZhL-XJTs/exec';
 
+    // ── MODEL DEFINITIONS ─────────────────────────────────────────
+    // All z-scale values preserved from the original (second) file
     const MODELS = {
-        busStop:     { url: BASE_URL + 'bus_stop_new.glb',     scale: { x: 1,   y: 1,   z: 1   } },
-        bus:         { url: BASE_URL + 'bus_new.glb',          scale: { x: 1,   y: 1,   z: 1   } },
-        fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1,   y: 1,   z: 1   } },
-        policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: 1,   y: 1,   z: 1   } },
-        policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 1.7, y: 1.7, z: 1.7 } },
-        imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5, y: 2.5, z: 2.5 } },
-        akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1.7, y: 1.7, z: 1.7 } },
+        busStop: {
+            url: BASE_URL + 'bus_stop_new.glb',
+            scale: { x: 1, y: 1, z: 1 },
+        },
+        bus: {
+            url: BASE_URL + 'bus_new.glb',
+            scale: { x: 1, y: 1, z: 1 },
+        },
+        fordtransit: {
+            url: BASE_URL + 'ford_transit_new.glb',
+            scale: { x: 1, y: 1, z: 1 },
+        },
+        skoda: {
+            url: BASE_URL + 'skoda.glb',
+            scale: { x: 1.5, y: 1.5, z: 1.5 },
+        },
+        policecar: {
+            url: BASE_URL + 'police_vehicle.glb',
+            scale: { x: 1, y: 1, z: 1 },   // fixed: was z:0 in v1
+        },
+        policeman: {
+            url: BASE_URL + 'policeman.glb',
+            scale: { x: 1.7, y: 1.7, z: 1.7 }, // fixed: was z:0 in v1
+        },
+        imeditv: {
+            url: BASE_URL + 'imedi_drone.glb',
+            scale: { x: 2.5, y: 2.5, z: 2.5 },
+        },
+        akatsuki: {
+            url: BASE_URL + 'akatsuki_new.glb',
+            scale: { x: 1.7, y: 1.7, z: 1.7 },
+        },
     };
 
+    // ── STATIC INSTANCES ──────────────────────────────────────────
     const instances = [
+        // Bus stops
         { id: 'bus-stop-1-გიმნაზია',  model: 'busStop',     coords: [44.798461, 41.697794],     rotationY: -63  },
         { id: 'bus-stop-2-ქაშუეთი',   model: 'busStop',     coords: [44.798742, 41.697983],     rotationY: -243 },
-        { id: 'bus-1-north',           model: 'bus',         coords: [44.798445, 41.797900],     rotationY: -155 },
-        { id: 'bus-2-east',            model: 'bus',         coords: [44.798675, 41.697900],     rotationY: 25   },
-        { id: 'fordtransit-1',         model: 'fordtransit', coords: [44.798500, 41.697800, 1],  rotationY: 63   },
-        { id: 'policecar-1',           model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },
-        { id: 'policecar-2',           model: 'policecar',   coords: [44.798720, 41.697360],     rotationY: 300  },
-        { id: 'police-1',              model: 'policeman',   coords: [44.798500, 41.697700],     rotationY: 0    },
-        { id: 'drone-1',               model: 'imeditv',     coords: [44.798500, 41.697700, 20], rotationY: 0    },
+        // Buses
+        { id: 'bus-1-north',           model: 'bus',         coords: [44.798445, 41.7979],     rotationY: -155 },
+        { id: 'bus-2-east',            model: 'bus',         coords: [44.798675, 41.6979],     rotationY: 25   },
+        // Ford Transit
+        { id: 'fordtransit-1-north',   model: 'fordtransit', coords: [44.7985, 41.6978, 1],  rotationY: 63   },
+        // Police cars
+        { id: 'policecar-1-north',     model: 'policecar',   coords: [44.79862, 41.69732, 1],  rotationY: 300  },
+        { id: 'policecar-2-east',      model: 'policecar',   coords: [44.79872, 41.69736, 1],     rotationY: 300  },
+        // Policemen
+        { id: 'police-1-north',        model: 'policeman',   coords: [44.7985, 41.6977],     rotationY: 0    },
+        // Drone
+        { id: 'drone-1-north',         model: 'imeditv',     coords: [44.7985, 41.6977, 20], rotationY: 0    },
     ];
 
     const map = new mapboxgl.Map({
@@ -278,18 +310,13 @@ body { margin: 0; padding: 0; }
     ));
 
     // ── User figure registry (for tooltip hover) ──────────────────
-    // Each entry: { mesh, nickname, age, gender }
     const userFigures = [];
 
     // ── Tooltip ───────────────────────────────────────────────────
     const tooltip = document.getElementById('tooltip');
 
     function showTooltip(x, y, nickname, age, gender) {
-        tooltip.innerHTML = `
-            <strong>${nickname}</strong><br>
-            Age: ${age}<br>
-            Gender: ${gender}
-        `;
+        tooltip.innerHTML = `<strong>${nickname}</strong><br>Age: ${age}<br>Gender: ${gender}`;
         tooltip.style.left = (x + 14) + 'px';
         tooltip.style.top  = (y - 10) + 'px';
         tooltip.style.display = 'block';
@@ -297,6 +324,7 @@ body { margin: 0; padding: 0; }
     function hideTooltip() { tooltip.style.display = 'none'; }
 
     // ── Load all static models sequentially ───────────────────────
+    // Uses ?id= query param (not # fragment) to bust Threebox's internal cache
     function loadAllModels(list, onDone) {
         const loaded = [];
         function loadNext(index) {
@@ -304,7 +332,7 @@ body { margin: 0; padding: 0; }
             const inst = list[index];
             const def  = MODELS[inst.model];
             tb.loadObj({
-                obj: def.url + '#' + inst.id,
+                obj: def.url + '?id=' + inst.id,
                 type: 'gltf',
                 scale: def.scale,
                 units: 'meters',
@@ -313,7 +341,7 @@ body { margin: 0; padding: 0; }
             }, (model) => {
                 model.setCoords([inst.coords[0], inst.coords[1], inst.coords[2] || 0]);
                 loaded.push(model);
-                console.log(`✅ Loaded: ${inst.id}`);
+                console.log('✅ Loaded: ' + inst.id);
                 loadNext(index + 1);
             });
         }
@@ -321,12 +349,13 @@ body { margin: 0; padding: 0; }
     }
 
     // ── Place an akatsuki figure on the map ───────────────────────
-    let akatsukyCounter = 0;
+    let akatsukiCounter = 0;
     function placeAkatsuki(coords, nickname, age, gender) {
-        akatsukyCounter++;
+        akatsukiCounter++;
         const def = MODELS.akatsuki;
+        // Each akatsuki gets a unique ?id= so Threebox doesn't reuse a cached mesh
         tb.loadObj({
-            obj: def.url + '#u' + akatsukyCounter,
+            obj: def.url + '?id=u' + akatsukiCounter + '_' + Date.now(),
             type: 'gltf',
             scale: def.scale,
             units: 'meters',
@@ -335,10 +364,8 @@ body { margin: 0; padding: 0; }
         }, (model) => {
             model.setCoords([coords[0], coords[1], 0]);
             tb.add(model);
-
-            // Store reference for tooltip
             userFigures.push({ model, nickname, age, gender, coords });
-            console.log(`✅ Placed akatsuki: ${nickname}`);
+            console.log('✅ Placed akatsuki: ' + nickname);
         });
     }
 
@@ -347,7 +374,7 @@ body { margin: 0; padding: 0; }
         try {
             const res  = await fetch(APPS_SCRIPT_URL);
             const data = await res.json();
-            console.log(`📍 Loading ${data.length} existing figures...`);
+            console.log('📍 Loading ' + data.length + ' existing figures...');
             data.forEach((row, i) => {
                 if (!row.latitude || !row.longitude) return;
                 setTimeout(() => {
@@ -357,7 +384,7 @@ body { margin: 0; padding: 0; }
                         row.age      || '?',
                         row.gender   || '?'
                     );
-                }, i * 200); // stagger loads to avoid Threebox cache conflicts
+                }, i * 300); // stagger to avoid Threebox cache conflicts
             });
         } catch (err) {
             console.warn('Could not load existing figures:', err);
@@ -367,23 +394,18 @@ body { margin: 0; padding: 0; }
     // ── Tooltip on mouse move ─────────────────────────────────────
     map.on('mousemove', (e) => {
         if (userFigures.length === 0) return;
-
         const mousePoint = e.point;
         let found = false;
-
         for (const fig of userFigures) {
             const figPoint = map.project([fig.coords[0], fig.coords[1]]);
             const dx = mousePoint.x - figPoint.x;
             const dy = mousePoint.y - figPoint.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < 20) {
+            if (Math.sqrt(dx * dx + dy * dy) < 20) {
                 showTooltip(mousePoint.x, mousePoint.y, fig.nickname, fig.age, fig.gender);
                 found = true;
                 break;
             }
         }
-
         if (!found) hideTooltip();
     });
 
@@ -417,7 +439,7 @@ body { margin: 0; padding: 0; }
 
     map.on('click', (e) => {
         if (!placingMode) return;
-        pendingCoords = [e.lngLat.lng, e.lngLat.lat];
+        pendingCoords = [e.lngLat.lng, e.lngLat.lat, 1];
         placingMode   = false;
         akatsukiBtn.classList.remove('active');
         map.getCanvas().classList.remove('placing');
@@ -462,9 +484,9 @@ body { margin: 0; padding: 0; }
     submitBtn.addEventListener('click', async () => {
         const nickname = document.getElementById('nickname').value.trim();
         const age      = document.getElementById('age').value.trim();
-        if (!nickname)       { alert('Please enter a nickname.');    return; }
-        if (!age)            { alert('Please enter your age.');      return; }
-        if (!selectedGender) { alert('Please select your gender.');  return; }
+        if (!nickname)       { alert('Please enter a nickname.');   return; }
+        if (!age)            { alert('Please enter your age.');     return; }
+        if (!selectedGender) { alert('Please select your gender.'); return; }
 
         submitBtn.textContent = '⏳ Submitting...';
         submitBtn.disabled    = true;
@@ -491,7 +513,7 @@ body { margin: 0; padding: 0; }
             console.error('Submission error:', err);
         }
 
-        // Place figure immediately — don't wait for server confirmation
+        // Place figure immediately without waiting for server confirmation
         placeAkatsuki(pendingCoords, nickname, age, selectedGender);
 
         formView.style.display   = 'none';
@@ -510,7 +532,7 @@ body { margin: 0; padding: 0; }
                 renderingMode: '3d',
                 onAdd() {
                     allModels.forEach(m => tb.add(m));
-                    console.log(`✅ ${allModels.length} static models added`);
+                    console.log('✅ ' + allModels.length + ' static models added');
                 },
                 render() { tb.update(); }
             });
