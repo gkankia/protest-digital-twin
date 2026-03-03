@@ -11,228 +11,21 @@
 <style>
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-#map.placing { cursor: crosshair; }
-
-#akatsuki-btn {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    background: #1a1a2e;
-    color: #fff;
-    border: 2px solid #e94560;
-    border-radius: 12px;
-    padding: 12px 28px;
-    font-size: 15px;
-    font-family: sans-serif;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
-    transition: all 0.2s;
-}
-#akatsuki-btn:hover, #akatsuki-btn.active { background: #e94560; }
-
-#place-hint {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    background: rgba(0,0,0,0.75);
-    color: #fff;
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-family: sans-serif;
-    font-size: 13px;
-    display: none;
-    white-space: nowrap;
-}
-
-#tooltip {
-    position: absolute;
-    z-index: 20;
-    background: #1a1a2e;
-    border: 1px solid #e94560;
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-family: sans-serif;
-    font-size: 13px;
-    pointer-events: none;
-    display: none;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-    line-height: 1.6;
-}
-
-#modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-}
-#modal-overlay.visible { display: flex; }
-#modal {
-    background: #1a1a2e;
-    border: 1px solid #e94560;
-    border-radius: 16px;
-    padding: 32px;
-    width: 90%;
-    max-width: 460px;
-    color: #fff;
-    font-family: sans-serif;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    max-height: 90vh;
-    overflow-y: auto;
-}
-#modal h2 { margin: 0 0 6px; font-size: 20px; color: #e94560; }
-#modal p.subtitle { margin: 0 0 20px; font-size: 13px; color: #aaa; }
-
-.field-group { margin-bottom: 16px; }
-.field-group label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
-.field-group input[type="text"],
-.field-group input[type="number"] {
-    width: 100%;
-    background: #0f0f1a;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 14px;
-    padding: 10px;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    transition: border 0.2s;
-}
-.field-group input:focus { outline: none; border-color: #e94560; }
-
-.gender-group { display: flex; gap: 10px; margin-bottom: 20px; }
-.gender-btn {
-    flex: 1;
-    padding: 10px 6px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    background: #0f0f1a;
-    color: #ccc;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-}
-.gender-btn:hover { border-color: #e94560; color: #fff; }
-.gender-btn.selected { border-color: #e94560; background: #e94560; color: #fff; }
-
-.question-block { margin-bottom: 16px; }
-.question-block label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
-.question-block textarea {
-    width: 100%;
-    height: 70px;
-    background: #0f0f1a;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 14px;
-    padding: 10px;
-    resize: none;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    transition: border 0.2s;
-}
-.question-block textarea:focus { outline: none; border-color: #e94560; }
-.char-count { font-size: 11px; color: #555; text-align: right; margin-top: 3px; }
-
-#submit-btn {
-    width: 100%;
-    padding: 14px;
-    background: #e94560;
-    border: none;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 8px;
-}
-#submit-btn:hover:not(:disabled) { background: #c73652; }
-#submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-#success-msg {
-    display: none;
-    text-align: center;
-    padding: 20px 0 10px;
-}
-#success-msg .checkmark { font-size: 48px; }
-#success-msg p { color: #aaa; margin-top: 10px; font-size: 14px; }
 </style>
 </head>
 <body>
 <div id="map"></div>
-<div id="tooltip"></div>
-<button id="akatsuki-btn">🔴 Place Yourself on the Map</button>
-<div id="place-hint">Click anywhere on the map to place your figure · Esc to cancel</div>
-
-<div id="modal-overlay">
-    <div id="modal">
-        <div id="form-view">
-            <h2>Register Your Presence</h2>
-            <p class="subtitle">Your figure will remain on the map for everyone to see.</p>
-
-            <div class="field-group">
-                <label>Nickname</label>
-                <input type="text" id="nickname" maxlength="50" placeholder="Enter a nickname...">
-            </div>
-
-            <div class="field-group">
-                <label>Age</label>
-                <input type="number" id="age" min="1" max="120" placeholder="Your age">
-            </div>
-
-            <div class="gender-group">
-                <div class="gender-btn" data-gender="male">♂ Male</div>
-                <div class="gender-btn" data-gender="female">♀ Female</div>
-                <div class="gender-btn" data-gender="other">⚬ Other</div>
-            </div>
-
-            <div class="question-block">
-                <label>1. Why are you here today?</label>
-                <textarea id="q1" maxlength="200" placeholder="გამოხატეთ თქვენი მოსაზრება..."></textarea>
-                <div class="char-count"><span id="q1-count">0</span>/200</div>
-            </div>
-            <div class="question-block">
-                <label>2. What do you hope will change?</label>
-                <textarea id="q2" maxlength="200" placeholder="გამოხატეთ თქვენი მოსაზრება..."></textarea>
-                <div class="char-count"><span id="q2-count">0</span>/200</div>
-            </div>
-            <div class="question-block">
-                <label>3. What message do you want to send?</label>
-                <textarea id="q3" maxlength="200" placeholder="გამოხატეთ თქვენი მოსაზრება..."></textarea>
-                <div class="char-count"><span id="q3-count">0</span>/200</div>
-            </div>
-
-            <button id="submit-btn">Submit</button>
-        </div>
-
-        <div id="success-msg">
-            <div class="checkmark">✅</div>
-            <h2 style="color:#e94560;margin-top:16px;">You're on the map!</h2>
-            <p>Your response has been recorded.<br>Your figure is now visible to everyone.</p>
-        </div>
-    </div>
-</div>
-
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
 
     const BASE_URL = 'https://raw.githubusercontent.com/gkankia/protest-digital-twin/main/Digital%20Twin/models/';
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDOqhSiuRb8x1lKhn6BWj8FTLGw7v-vD5S8edkrPzYF3PrpTSGNouOtZjZhL-XJTs/exec';
 
-    // ── MODEL DEFINITIONS ─────────────────────────────────────────
-    // All z-scale values preserved from the original (second) file
+    // ================================================================
+    //  MODEL DEFINITIONS
+    //  url: filename in your /models/ folder
+    //  scale: size in meters
+    //  defaultRotation: base Y rotation — adjust per instance with rotationY
+    // ================================================================
     const MODELS = {
         busStop: {
             url: BASE_URL + 'bus_stop_new.glb',
@@ -240,7 +33,7 @@ body { margin: 0; padding: 0; }
         },
         bus: {
             url: BASE_URL + 'bus_new.glb',
-            scale: { x: 1, y: 1, z: 1 },
+            scale: { x: 1, y: 1, z: 1 },   // adjust scale to match real size
         },
         fordtransit: {
             url: BASE_URL + 'ford_transit_new.glb',
@@ -252,40 +45,85 @@ body { margin: 0; padding: 0; }
         },
         policecar: {
             url: BASE_URL + 'police_vehicle.glb',
-            scale: { x: 1, y: 1, z: 1 },   // fixed: was z:0 in v1
+            scale: { x: 1, y: 1, z: 0 },
         },
         policeman: {
             url: BASE_URL + 'policeman.glb',
-            scale: { x: 1.7, y: 1.7, z: 1.7 }, // fixed: was z:0 in v1
+            scale: { x: 1.7, y: 1.7, z: 0 },
         },
         imeditv: {
             url: BASE_URL + 'imedi_drone.glb',
             scale: { x: 2.5, y: 2.5, z: 2.5 },
         },
-        akatsuki: {
+        imeditv: {
             url: BASE_URL + 'akatsuki_new.glb',
-            scale: { x: 1.7, y: 1.7, z: 1.7 },
+            scale: { x: 2.5, y: 2.5, z: 2.5 },
         },
     };
 
-    // ── STATIC INSTANCES ──────────────────────────────────────────
+    // ================================================================
+    //  INSTANCES
+    //  model: key from MODELS above
+    //  coords: [lng, lat]
+    //  rotationY: compass direction in degrees
+    //    0   = north
+    //    90  = east
+    //    180 = south
+    //    270 = west
+    //    use -63 / 117 for your street angle
+    // ================================================================
     const instances = [
-        // Bus stops
-        { id: 'bus-stop-1-გიმნაზია',  model: 'busStop',     coords: [44.798461, 41.697794],     rotationY: -63  },
-        { id: 'bus-stop-2-ქაშუეთი',   model: 'busStop',     coords: [44.798742, 41.697983],     rotationY: -243 },
-        // Buses
-        { id: 'bus-1-north',           model: 'bus',         coords: [44.798445, 41.7979],     rotationY: -155 },
-        { id: 'bus-2-east',            model: 'bus',         coords: [44.798675, 41.6979],     rotationY: 25   },
-        // Ford Transit
-        { id: 'fordtransit-1-north',   model: 'fordtransit', coords: [44.7985, 41.6978, 1],  rotationY: 63   },
-        // Police cars
-        { id: 'policecar-1-north',     model: 'policecar',   coords: [44.79862, 41.69732, 1],  rotationY: 300  },
-        { id: 'policecar-2-east',      model: 'policecar',   coords: [44.79872, 41.69736, 1],     rotationY: 300  },
-        // Policemen
-        { id: 'police-1-north',        model: 'policeman',   coords: [44.7985, 41.6977],     rotationY: 0    },
-        // Drone
-        { id: 'drone-1-north',         model: 'imeditv',     coords: [44.7985, 41.6977, 20], rotationY: 0    },
+
+        // ── BUS STOPS ───────────────────────────────────────────────
+        { id: 'bus-stop-1-გიმნაზია',  model: 'busStop', coords: [44.798461, 41.697794], rotationY: -63  },
+        { id: 'bus-stop-2-ქაშუეთი',   model: 'busStop', coords: [44.798742, 41.697983], rotationY: -243 },
+
+        // ── BUSES ───────────────────────────────────────────────────
+        { id: 'bus-1-north',  model: 'bus', coords: [44.798445, 41.697900], rotationY: -155   },
+        { id: 'bus-2-east',   model: 'bus', coords: [44.798675, 41.697900], rotationY: 25  },
+        //{ id: 'bus-3-south',  model: 'bus', coords: [44.798700, 41.697900], rotationY: 180 },
+        //{ id: 'bus-4-west',   model: 'bus', coords: [44.798800, 41.697900], rotationY: 270 },
+
+        // ── FORD-TRANSIT ────────────────────────────────────────────────────
+        { id: 'fordtransit-1-north',  model: 'fordtransit', coords: [44.798500, 41.697800, 1], rotationY: 63   },
+        //{ id: 'fordtransit-2-east',   model: 'fordtransit', coords: [44.798620, 41.697320, 1], rotationY: 90  },
+        //{ id: 'fordtransit-3-south',  model: 'fordtransit', coords: [44.798700, 41.697800], rotationY: 180 },
+        //{ id: 'fordtransit-4-west',   model: 'fordtransit', coords: [44.798800, 41.697800], rotationY: 270 },
+
+        // ── SKODA ────────────────────────────────────────────────────
+        //{ id: 'skoda-1-north',  model: 'skoda', coords: [44.798620, 41.697320], rotationY: 110   },
+        //{ id: 'skoda-2-east',   model: 'skoda', coords: [44.798720, 41.697360], rotationY: 300  },
+        //{ id: 'skoda-3-south',  model: 'skoda', coords: [44.798700, 41.697800], rotationY: 180 },
+        //{ id: 'skoda-4-west',   model: 'skoda', coords: [44.798800, 41.697800], rotationY: 270 },
+
+        // ── POLICE CAR ────────────────────────────────────────────────────
+        { id: 'policecar-1-north',  model: 'policecar', coords: [44.798620, 41.697320, 1], rotationY: 300   },
+        { id: 'policecar-2-east',   model: 'policecar', coords: [44.798720, 41.697360], rotationY: 300  },
+        //{ id: 'policecar-3-south',  model: 'policecar', coords: [44.798700, 41.697800], rotationY: 180 },
+        //{ id: 'policecar-4-west',   model: 'policecar', coords: [44.798800, 41.697800], rotationY: 270 },
+
+        // ── POLICEMEN ───────────────────────────────────────────────
+        { id: 'police-1-north', model: 'policeman', coords: [44.798500, 41.697700], rotationY: 0   },
+        //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
+        //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
+        //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
+
+        // ── IMEDITV ───────────────────────────────────────────────
+        { id: 'drone-1-north', model: 'imeditv', coords: [44.798500, 41.697700, 20], rotationY: 0   },
+        //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
+        //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
+        //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
+
+        // ── AKATSUKI ───────────────────────────────────────────────
+        { id: 'akatsuki', model: 'akatsuki', coords: [44.798500, 41.697700, 20], rotationY: 0   },
+        //{ id: 'police-2-east',  model: 'policeman', coords: [44.798600, 41.697700], rotationY: 90  },
+        //{ id: 'police-3-south', model: 'policeman', coords: [44.798700, 41.697700], rotationY: 180 },
+        //{ id: 'police-4-west',  model: 'policeman', coords: [44.798800, 41.697700], rotationY: 270 },
+
+        // ── TEMPLATE: copy to add more ──────────────────────────────
+        // { id: 'unique-id', model: 'car', coords: [44.799, 41.698], rotationY: 0 },
     ];
+    // ================================================================
 
     const map = new mapboxgl.Map({
         container: 'map',
@@ -309,219 +147,38 @@ body { margin: 0; padding: 0; }
         { defaultLights: true }
     ));
 
-    // ── User figure registry (for tooltip hover) ──────────────────
-    const userFigures = [];
-
-    // ── Tooltip ───────────────────────────────────────────────────
-    const tooltip = document.getElementById('tooltip');
-
-    function showTooltip(x, y, nickname, age, gender) {
-        tooltip.innerHTML = `<strong>${nickname}</strong><br>Age: ${age}<br>Gender: ${gender}`;
-        tooltip.style.left = (x + 14) + 'px';
-        tooltip.style.top  = (y - 10) + 'px';
-        tooltip.style.display = 'block';
-    }
-    function hideTooltip() { tooltip.style.display = 'none'; }
-
-    // ── Load all static models sequentially ───────────────────────
-    // Uses ?id= query param (not # fragment) to bust Threebox's internal cache
-    function loadAllModels(list, onDone) {
+    // Load all instances sequentially to avoid Threebox caching conflicts
+    function loadAllModels(instances, onDone) {
         const loaded = [];
+
         function loadNext(index) {
-            if (index >= list.length) { onDone(loaded); return; }
-            const inst = list[index];
-            const def  = MODELS[inst.model];
+            if (index >= instances.length) {
+                onDone(loaded);
+                return;
+            }
+
+            const inst = instances[index];
+            const modelDef = MODELS[inst.model];
+
             tb.loadObj({
-                obj: def.url + '?id=' + inst.id,
+                obj: modelDef.url + '?id=' + inst.id,  // unique URL per instance
                 type: 'gltf',
-                scale: def.scale,
+                scale: modelDef.scale,
                 units: 'meters',
                 rotation: { x: 90, y: inst.rotationY, z: 0 },
                 anchor: 'bottom',
             }, (model) => {
-                model.setCoords([inst.coords[0], inst.coords[1], inst.coords[2] || 0]);
+                const elevation = map.queryTerrainElevation([inst.coords[0], inst.coords[1]]) || 0;
+                model.setCoords([inst.coords[0], inst.coords[1], inst.coords[2] || 0]);  // ✅ uses altitude if provided, otherwise 0
                 loaded.push(model);
-                console.log('✅ Loaded: ' + inst.id);
-                loadNext(index + 1);
+                console.log(`✅ Loaded: ${inst.id}`);
+                loadNext(index + 1);  // load next only after this one is done
             });
         }
+
         loadNext(0);
     }
 
-    // ── Place an akatsuki figure on the map ───────────────────────
-    let akatsukiCounter = 0;
-    function placeAkatsuki(coords, nickname, age, gender) {
-        akatsukiCounter++;
-        const def = MODELS.akatsuki;
-        // Each akatsuki gets a unique ?id= so Threebox doesn't reuse a cached mesh
-        tb.loadObj({
-            obj: def.url + '?id=u' + akatsukiCounter + '_' + Date.now(),
-            type: 'gltf',
-            scale: def.scale,
-            units: 'meters',
-            rotation: { x: 90, y: 0, z: 0 },
-            anchor: 'bottom',
-        }, (model) => {
-            model.setCoords([coords[0], coords[1], 0]);
-            tb.add(model);
-            userFigures.push({ model, nickname, age, gender, coords });
-            console.log('✅ Placed akatsuki: ' + nickname);
-        });
-    }
-
-    // ── Load existing figures from Google Sheets on startup ───────
-    async function loadExistingFigures() {
-        try {
-            const res  = await fetch(APPS_SCRIPT_URL);
-            const data = await res.json();
-            console.log('📍 Loading ' + data.length + ' existing figures...');
-            data.forEach((row, i) => {
-                if (!row.latitude || !row.longitude) return;
-                setTimeout(() => {
-                    placeAkatsuki(
-                        [parseFloat(row.longitude), parseFloat(row.latitude)],
-                        row.nickname || 'Anonymous',
-                        row.age      || '?',
-                        row.gender   || '?'
-                    );
-                }, i * 300); // stagger to avoid Threebox cache conflicts
-            });
-        } catch (err) {
-            console.warn('Could not load existing figures:', err);
-        }
-    }
-
-    // ── Tooltip on mouse move ─────────────────────────────────────
-    map.on('mousemove', (e) => {
-        if (userFigures.length === 0) return;
-        const mousePoint = e.point;
-        let found = false;
-        for (const fig of userFigures) {
-            const figPoint = map.project([fig.coords[0], fig.coords[1]]);
-            const dx = mousePoint.x - figPoint.x;
-            const dy = mousePoint.y - figPoint.y;
-            if (Math.sqrt(dx * dx + dy * dy) < 20) {
-                showTooltip(mousePoint.x, mousePoint.y, fig.nickname, fig.age, fig.gender);
-                found = true;
-                break;
-            }
-        }
-        if (!found) hideTooltip();
-    });
-
-    // ── Place mode ────────────────────────────────────────────────
-    let placingMode    = false;
-    let pendingCoords  = null;
-    let selectedGender = null;
-
-    const akatsukiBtn = document.getElementById('akatsuki-btn');
-    const placeHint   = document.getElementById('place-hint');
-    const overlay     = document.getElementById('modal-overlay');
-    const formView    = document.getElementById('form-view');
-    const successMsg  = document.getElementById('success-msg');
-    const submitBtn   = document.getElementById('submit-btn');
-
-    akatsukiBtn.addEventListener('click', () => {
-        placingMode = !placingMode;
-        akatsukiBtn.classList.toggle('active', placingMode);
-        map.getCanvas().classList.toggle('placing', placingMode);
-        placeHint.style.display = placingMode ? 'block' : 'none';
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && placingMode) {
-            placingMode = false;
-            akatsukiBtn.classList.remove('active');
-            map.getCanvas().classList.remove('placing');
-            placeHint.style.display = 'none';
-        }
-    });
-
-    map.on('click', (e) => {
-        if (!placingMode) return;
-        pendingCoords = [e.lngLat.lng, e.lngLat.lat, 1];
-        placingMode   = false;
-        akatsukiBtn.classList.remove('active');
-        map.getCanvas().classList.remove('placing');
-        placeHint.style.display = 'none';
-
-        // Reset form
-        selectedGender = null;
-        document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
-        document.getElementById('nickname').value = '';
-        document.getElementById('age').value      = '';
-        document.getElementById('q1').value       = '';
-        document.getElementById('q2').value       = '';
-        document.getElementById('q3').value       = '';
-        ['q1','q2','q3'].forEach(id => {
-            document.getElementById(id + '-count').textContent = '0';
-        });
-        formView.style.display   = 'block';
-        successMsg.style.display = 'none';
-        submitBtn.textContent    = 'Submit';
-        submitBtn.disabled       = false;
-        overlay.classList.add('visible');
-    });
-
-    document.querySelectorAll('.gender-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedGender = btn.dataset.gender;
-        });
-    });
-
-    ['q1','q2','q3'].forEach(id => {
-        document.getElementById(id).addEventListener('input', function () {
-            document.getElementById(id + '-count').textContent = this.value.length;
-        });
-    });
-
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) overlay.classList.remove('visible');
-    });
-
-    submitBtn.addEventListener('click', async () => {
-        const nickname = document.getElementById('nickname').value.trim();
-        const age      = document.getElementById('age').value.trim();
-        if (!nickname)       { alert('Please enter a nickname.');   return; }
-        if (!age)            { alert('Please enter your age.');     return; }
-        if (!selectedGender) { alert('Please select your gender.'); return; }
-
-        submitBtn.textContent = '⏳ Submitting...';
-        submitBtn.disabled    = true;
-
-        const payload = {
-            nickname,
-            age,
-            gender:    selectedGender,
-            latitude:  pendingCoords[1],
-            longitude: pendingCoords[0],
-            q1: document.getElementById('q1').value.trim(),
-            q2: document.getElementById('q2').value.trim(),
-            q3: document.getElementById('q3').value.trim(),
-        };
-
-        try {
-            await fetch(APPS_SCRIPT_URL, {
-                method:  'POST',
-                mode:    'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(payload),
-            });
-        } catch (err) {
-            console.error('Submission error:', err);
-        }
-
-        // Place figure immediately without waiting for server confirmation
-        placeAkatsuki(pendingCoords, nickname, age, selectedGender);
-
-        formView.style.display   = 'none';
-        successMsg.style.display = 'block';
-        setTimeout(() => overlay.classList.remove('visible'), 3000);
-    });
-
-    // ── Init ──────────────────────────────────────────────────────
     map.on('style.load', () => {
         map.setFog({});
 
@@ -531,14 +188,13 @@ body { margin: 0; padding: 0; }
                 type: 'custom',
                 renderingMode: '3d',
                 onAdd() {
-                    allModels.forEach(m => tb.add(m));
-                    console.log('✅ ' + allModels.length + ' static models added');
+                    allModels.forEach(model => tb.add(model));
+                    console.log(`✅ All ${allModels.length} models added to map`);
                 },
-                render() { tb.update(); }
+                render() {
+                    tb.update();
+                }
             });
-
-            // Load existing user figures after static models are ready
-            loadExistingFigures();
         });
     });
 </script>
