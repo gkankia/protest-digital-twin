@@ -1,36 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="ka">
 <head>
 <meta charset="utf-8">
-<title>Protest Digital Twin</title>
+<title>პროტესტის ციფრული ტყუპი | თბილისი</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<!-- SEO Meta -->
+<meta name="description" content="პროტესტის ციფრული ტყუპი — თბილისი. მოათავსე შენი ფიგურა რუკაზე და დატოვე შენი ხმა ისტორიისთვის.">
+<meta name="keywords" content="პროტესტი, თბილისი, საქართველო, ციფრული ტყუპი, რუკა, მოქალაქეები, demonstration, Tbilisi, Georgia, digital twin">
+<meta name="author" content="Protest Digital Twin">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://gkankia.github.io/protest-digital-twin/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="პროტესტის ციფრული ტყუპი | თბილისი">
+<meta property="og:description" content="მოათავსე შენი ფიგურა რუკაზე. შენი ყოფნა ისტორიის ნაწილი გახდება.">
+<meta property="og:url" content="https://gkankia.github.io/protest-digital-twin/">
+<meta property="og:locale" content="ka_GE">
+<meta property="og:site_name" content="პროტესტის ციფრული ტყუპი">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="პროტესტის ციფრული ტყუპი | თბილისი">
+<meta name="twitter:description" content="მოათავსე შენი ფიგურა რუკაზე. შენი ყოფნა ისტორიის ნაწილი გახდება.">
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "პროტესტის ციფრული ტყუპი",
+  "description": "პროტესტის ციფრული ტყუპი — თბილისი. მოათავსე შენი ფიგურა რუკაზე და დატოვე შენი ხმა ისტორიისთვის.",
+  "url": "https://gkankia.github.io/protest-digital-twin/",
+  "inLanguage": "ka",
+  "applicationCategory": "Map",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GEL" }
+}
+</script>
+
+<!-- Georgian Fonts -->
+<style>
+@import url("//cdn.web-fonts.ge/fonts/bpg-arial-caps/css/bpg-arial-caps.min.css");
+@import url("//cdn.web-fonts.ge/fonts/bpg-nino-medium-condenced/css/bpg-nino-medium-condenced.min.css");
+</style>
+
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
 <link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
+
 <style>
+/* Base font — BPG Arial Caps for body text */
+body, button, input, textarea, label, p, div, span {
+    font-family: 'BPG Arial Caps', sans-serif;
+}
+/* Display font — BPG Nino Medium Condensed for headings & CTAs */
+h2, #akatsuki-btn, #submit-btn, #about-btn, #about-panel h2 {
+    font-family: 'BPG Nino Medium Condenced', 'BPG Arial Caps', sans-serif;
+}
+
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 #map.placing { cursor: crosshair; }
 
+/* ── Place button ── */
 #akatsuki-btn {
     position: absolute;
     bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    background: #ffffff;
-    color: #000000;
+    background: #1a1a2e;
+    color: #fff;
+    border: 2px solid #e94560;
     border-radius: 12px;
     padding: 12px 28px;
     font-size: 15px;
-    font-family: sans-serif;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
     transition: all 0.2s;
+    white-space: nowrap;
 }
 #akatsuki-btn:hover, #akatsuki-btn.active { background: #e94560; }
 
@@ -44,12 +98,12 @@ body { margin: 0; padding: 0; }
     color: #fff;
     padding: 8px 20px;
     border-radius: 20px;
-    font-family: sans-serif;
     font-size: 13px;
     display: none;
     white-space: nowrap;
 }
 
+/* ── Tooltip ── */
 #tooltip {
     position: absolute;
     z-index: 20;
@@ -58,14 +112,14 @@ body { margin: 0; padding: 0; }
     color: #fff;
     padding: 10px 14px;
     border-radius: 10px;
-    font-family: sans-serif;
     font-size: 13px;
     pointer-events: none;
     display: none;
     box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
+/* ── Registration modal ── */
 #modal-overlay {
     display: none;
     position: fixed;
@@ -84,7 +138,6 @@ body { margin: 0; padding: 0; }
     width: 90%;
     max-width: 460px;
     color: #fff;
-    font-family: sans-serif;
     box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     max-height: 90vh;
     overflow-y: auto;
@@ -104,8 +157,8 @@ body { margin: 0; padding: 0; }
     font-size: 14px;
     padding: 10px;
     box-sizing: border-box;
-    font-family: sans-serif;
     transition: border 0.2s;
+    font-family: 'BPG Arial Caps', sans-serif;
 }
 .field-group input:focus { outline: none; border-color: #e94560; }
 
@@ -121,6 +174,7 @@ body { margin: 0; padding: 0; }
     cursor: pointer;
     transition: all 0.2s;
     text-align: center;
+    font-family: 'BPG Arial Caps', sans-serif;
 }
 .gender-btn:hover { border-color: #e94560; color: #fff; }
 .gender-btn.selected { border-color: #e94560; background: #e94560; color: #fff; }
@@ -138,8 +192,8 @@ body { margin: 0; padding: 0; }
     padding: 10px;
     resize: none;
     box-sizing: border-box;
-    font-family: sans-serif;
     transition: border 0.2s;
+    font-family: 'BPG Arial Caps', sans-serif;
 }
 .question-block textarea:focus { outline: none; border-color: #e94560; }
 .char-count { font-size: 11px; color: #555; text-align: right; margin-top: 3px; }
@@ -168,6 +222,7 @@ body { margin: 0; padding: 0; }
 #success-msg .checkmark { font-size: 48px; }
 #success-msg p { color: #aaa; margin-top: 10px; font-size: 14px; }
 
+/* ── About button ── */
 #about-btn {
     position: absolute;
     bottom: 26px;
@@ -179,7 +234,6 @@ body { margin: 0; padding: 0; }
     border-radius: 8px;
     padding: 6px 14px;
     font-size: 13px;
-    font-family: sans-serif;
     cursor: pointer;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -187,6 +241,7 @@ body { margin: 0; padding: 0; }
 }
 #about-btn:hover { background: rgba(255,255,255,0.22); }
 
+/* ── About overlay ── */
 #about-overlay {
     display: none;
     position: fixed;
@@ -215,7 +270,6 @@ body { margin: 0; padding: 0; }
     width: 90%;
     max-width: 500px;
     color: #fff;
-    font-family: sans-serif;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 8px 48px rgba(0,0,0,0.4);
@@ -232,10 +286,11 @@ body { margin: 0; padding: 0; }
     font-size: 13px;
     color: rgba(255,255,255,0.5);
     margin: 0 0 24px;
+    display: block;
 }
 #about-panel p {
     font-size: 14px;
-    line-height: 1.75;
+    line-height: 1.85;
     color: rgba(255,255,255,0.85);
     margin: 0 0 16px;
 }
@@ -251,76 +306,78 @@ body { margin: 0; padding: 0; }
     cursor: pointer;
     line-height: 1;
     transition: color 0.2s;
+    font-family: sans-serif;
 }
 #about-close:hover { color: #fff; }
 </style>
 </head>
 <body>
+
 <div id="map"></div>
 <div id="tooltip"></div>
 
-<button id="about-btn">About the Project</button>
+<button id="about-btn">პროექტის შესახებ</button>
 
 <div id="about-overlay">
     <div id="about-blur"></div>
     <div id="about-panel">
         <button id="about-close">×</button>
-        <h2>About This Project</h2>
-        <p class="about-subtitle">Protest Digital Twin · Tbilisi, Georgia</p>
-        <p>This is a living digital twin of the protest space, capturing the presence and voices of those who showed up. Every figure on the map represents a real person who placed themselves here.</p>
-        <p>By clicking "Place Yourself on the Map", you leave a permanent mark — your figure, your age, and your words become part of the record of this moment in history.</p>
-        <p>The project was built to document collective presence and give every participant a voice that outlasts the protest itself.</p>
+        <h2>პროექტის შესახებ</h2>
+        <span class="about-subtitle">პროტესტის ციფრული ტყუპი · თბილისი, საქართველო</span>
+        <p>ეს არის პროტესტის სივრცის ცოცხალი ციფრული ტყუპი, რომელიც ინახავს მათ ყოფნას და ხმებს, ვინც გამოვიდა. რუკაზე ყოველი ფიგურა წარმოადგენს რეალურ ადამიანს, რომელმაც თავი განათავსა აქ.</p>
+        <p>„თავის განთავსება რუკაზე" ღილაკზე დაჭერით შენ ტოვებ მუდმივ კვალს — შენი ფიგურა, შენი ასაკი და სიტყვები ხდება ამ ისტორიული მომენტის ნაწილი.</p>
+        <p>პროექტი შეიქმნა კოლექტიური ყოფნის დასაფიქსირებლად და იმისათვის, რომ ყველა მონაწილეს მიეცეს ხმა, რომელიც გაგრძელდება პროტესტის შემდეგაც.</p>
     </div>
 </div>
 
 <button id="akatsuki-btn">გამოდი რუსთაველზე</button>
-<div id="place-hint">Click anywhere on the map to place your figure · Esc to cancel</div>
+<div id="place-hint">დააჭირე რუკაზე ნებისმიერ ადგილს · გასაუქმებლად დააჭირე Esc</div>
 
 <div id="modal-overlay">
     <div id="modal">
         <div id="form-view">
-            <h2>Register Your Presence</h2>
-            <p class="subtitle">Your figure will remain on the map for everyone to see.</p>
+            <h2>დაარეგისტრირე შენი ყოფნა</h2>
+            <p class="subtitle">შენი ფიგურა დარჩება რუკაზე ყველასათვის სანახავად.</p>
 
             <div class="field-group">
-                <label>ზედმეტსახელი</label>
-                <input type="text" id="nickname" maxlength="50" placeholder="შეიყვანე ზედმეტსახელი...">
+                <label>მეტსახელი</label>
+                <input type="text" id="nickname" maxlength="50" placeholder="შეიყვანე მეტსახელი...">
             </div>
 
             <div class="field-group">
-                <label>Age</label>
-                <input type="number" id="age" min="1" max="120" placeholder="ასაკი">
+                <label>ასაკი</label>
+                <input type="number" id="age" min="1" max="120" placeholder="შენი ასაკი">
             </div>
 
             <div class="gender-group">
-                <div class="gender-btn" data-gender="male">♂ კაცი</div>
-                <div class="gender-btn" data-gender="female">♀ ქალი</div>
-                <div class="gender-btn" data-gender="other">⚬ სხვა/არ გეტყვი</div>
+                <div class="gender-btn" data-gender="male">♂ მამრობითი</div>
+                <div class="gender-btn" data-gender="female">♀ მდედრობითი</div>
+                <div class="gender-btn" data-gender="other">⚬ სხვა</div>
             </div>
 
             <div class="question-block">
-                <label>1. Why are you here today?</label>
+                <label>1. რატომ ხარ დღეს აქ?</label>
                 <textarea id="q1" maxlength="200" placeholder="გამოხატეთ თქვენი მოსაზრება..."></textarea>
                 <div class="char-count"><span id="q1-count">0</span>/200</div>
             </div>
             <div class="question-block">
-                <label>2. What do you hope will change?</label>
+                <label>2. რისი შეცვლა გინდა?</label>
                 <textarea id="q2" maxlength="200" placeholder="გამოხატეთ თქვენი მოსაზრება..."></textarea>
                 <div class="char-count"><span id="q2-count">0</span>/200</div>
             </div>
             <div class="question-block">
-                <label>3. What message do you want to send?</label>
+                <label>3. რა გზავნილს უგზავნი სამყაროს?</label>
                 <textarea id="q3" maxlength="200" placeholder="გამოხატეთ თქვენი მოსაზრება..."></textarea>
                 <div class="char-count"><span id="q3-count">0</span>/200</div>
             </div>
 
-            <button id="submit-btn">Submit</button>
+            <button id="submit-btn">გაგზავნა</button>
         </div>
 
         <div id="success-msg">
             <div class="checkmark">✅</div>
-            <h2 style="color:#e94560;margin-top:16px;">You're on the map!</h2>
-            <p>Your response has been recorded.<br>Your figure is now visible to everyone.</p>
+            <h2 style="color:#e94560;margin-top:16px;">შენ რუკაზე ხარ!</h2>
+            <p>შენი პასუხი დაფიქსირდა.<br>შენი ფიგურა ახლა ყველასთვის ხილვადია.</p>
         </div>
     </div>
 </div>
@@ -340,9 +397,8 @@ body { margin: 0; padding: 0; }
         policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 1, y: 1, z: 1 } },
         imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5, y: 2.5, z: 2.5 } },
         akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1, y: 1, z: 1 } },
-        lampbig1:    { url: BASE_URL + 'street_lamp.glb',         scale: { x: 1.7, y: 1.7, z: 1.7 } },
-        lampbig2:    { url: BASE_URL + 'street_lamp.glb',         scale: { x: 1.7, y: 1.7, z: 1.7 } },
-
+        lampbig:    { url: BASE_URL + 'street_lamp_big.glb',         scale: { x: .5, y: .5, z: .5 } },
+        lampclassic:    { url: BASE_URL + 'street_lamp_big.glb',         scale: { x: .5, y: .5, z: .5 } },
     };
 
     const instances = [
@@ -355,9 +411,12 @@ body { margin: 0; padding: 0; }
         { id: 'policecar-2',   model: 'policecar',    coords: [44.798720, 41.697360],     rotationY: 300  },
         { id: 'policeman-1',   model: 'policeman',    coords: [44.798500, 41.697700],     rotationY: 0    },
         { id: 'drone-1',       model: 'imeditv',      coords: [44.798500, 41.697700, 20], rotationY: 0    },
-        { id: 'lampbig-1',     model: 'lampbig1',     coords: [44.79891, 41.69724], rotationY: 0    },
-        { id: 'lampbig-2',     model: 'lampbig2',     coords: [44.79911, 41.69693], rotationY: 0    },
-
+        { id: 'lampbig-1',     model: 'lampbig',     coords: [44.79891, 41.69724], rotationY: 0    },
+        { id: 'lampbig-2',     model: 'lampbig',     coords: [44.79911, 41.69693], rotationY: 0    },
+        { id: 'lampclassic-1',     model: 'lampclassic',     coords: [44.79931, 41.69656], rotationY: 0    },
+        { id: 'lampclassic-2',     model: 'lampclassic',     coords: [44.79966, 41.69607], rotationY: 0    },
+        { id: 'lampclassic-3',     model: 'lampclassic',     coords: [44.79954, 41.69624], rotationY: 0    },
+        { id: 'lampclassic-4',     model: 'lampclassic',     coords: [44.80102, 41.69444], rotationY: 0    },
     ];
 
     const map = new mapboxgl.Map({
@@ -380,10 +439,12 @@ body { margin: 0; padding: 0; }
     const userFigures = [];
 
     const tooltip = document.getElementById('tooltip');
+    const genderKa = { male: 'მამრობითი', female: 'მდედრობითი', other: 'სხვა' };
+
     function showTooltip(x, y, nickname, age, gender) {
-        tooltip.innerHTML = `<strong>${nickname}</strong><br>ასაკი: ${age}<br>სქესი: ${gender}`;
-        tooltip.style.left  = (x + 14) + 'px';
-        tooltip.style.top   = (y - 10) + 'px';
+        tooltip.innerHTML = `<strong>${nickname}</strong><br>ასაკი: ${age}<br>სქესი: ${genderKa[gender] || gender}`;
+        tooltip.style.left    = (x + 14) + 'px';
+        tooltip.style.top     = (y - 10) + 'px';
         tooltip.style.display = 'block';
     }
     function hideTooltip() { tooltip.style.display = 'none'; }
@@ -397,7 +458,7 @@ body { margin: 0; padding: 0; }
 
         tb.loadObj({
             type:     'glb',
-            obj:      def.url + '?i=' + inst.id,  // unique URL per instance defeats Threebox's internal cache
+            obj:      def.url + '?i=' + inst.id,  // unique URL per instance defeats Threebox cache
             scale:    def.scale,
             units:    'meters',
             rotation: { x: 90, y: inst.rotationY || 0, z: 0 },
@@ -418,9 +479,9 @@ body { margin: 0; padding: 0; }
         next();
     }
 
-    const AKATSUKI_HEIGHT = 1.5; // metres above ground — adjust as needed
-
+    const AKATSUKI_HEIGHT = 1;
     let akatsukiCounter = 0;
+
     function placeAkatsuki(coords, nickname, age, gender) {
         akatsukiCounter++;
         loadAndPlace({
@@ -441,14 +502,14 @@ body { margin: 0; padding: 0; }
                 setTimeout(() => {
                     placeAkatsuki(
                         [parseFloat(row.longitude), parseFloat(row.latitude)],
-                        row.nickname || 'Anonymous',
+                        row.nickname || 'ანონიმური',
                         row.age      || '?',
                         row.gender   || '?'
                     );
                 }, i * 400);
             });
         } catch (err) {
-            console.warn('Could not load existing figures:', err);
+            console.warn('ფიგურების ჩატვირთვა ვერ მოხერხდა:', err);
         }
     }
 
@@ -515,7 +576,7 @@ body { margin: 0; padding: 0; }
         });
         formView.style.display   = 'block';
         successMsg.style.display = 'none';
-        submitBtn.textContent    = 'Submit';
+        submitBtn.textContent    = 'გაგზავნა';
         submitBtn.disabled       = false;
         overlay.classList.add('visible');
     });
@@ -541,11 +602,11 @@ body { margin: 0; padding: 0; }
     submitBtn.addEventListener('click', async () => {
         const nickname = document.getElementById('nickname').value.trim();
         const age      = document.getElementById('age').value.trim();
-        if (!nickname)       { alert('Please enter a nickname.');   return; }
-        if (!age)            { alert('Please enter your age.');     return; }
-        if (!selectedGender) { alert('Please select your gender.'); return; }
+        if (!nickname)       { alert('გთხოვთ შეიყვანოთ მეტსახელი.');  return; }
+        if (!age)            { alert('გთხოვთ შეიყვანოთ ასაკი.');      return; }
+        if (!selectedGender) { alert('გთხოვთ აირჩიოთ სქესი.');        return; }
 
-        submitBtn.textContent = '⏳ Submitting...';
+        submitBtn.textContent = '⏳ იგზავნება...';
         submitBtn.disabled    = true;
 
         const payload = {
@@ -567,7 +628,7 @@ body { margin: 0; padding: 0; }
                 body:    JSON.stringify(payload),
             });
         } catch (err) {
-            console.error('Submission error:', err);
+            console.error('გაგზავნის შეცდომა:', err);
         }
 
         placeAkatsuki(pendingCoords, nickname, age, selectedGender);
@@ -577,15 +638,17 @@ body { margin: 0; padding: 0; }
         setTimeout(() => overlay.classList.remove('visible'), 3000);
     });
 
+    // ── About panel ───────────────────────────────────────────────
     const aboutBtn     = document.getElementById('about-btn');
     const aboutOverlay = document.getElementById('about-overlay');
     const aboutClose   = document.getElementById('about-close');
     const aboutBlur    = document.getElementById('about-blur');
 
-    aboutBtn.addEventListener('click', () => aboutOverlay.classList.add('visible'));
+    aboutBtn.addEventListener('click',   () => aboutOverlay.classList.add('visible'));
     aboutClose.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
-    aboutBlur.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
+    aboutBlur.addEventListener('click',  () => aboutOverlay.classList.remove('visible'));
 
+    // ── Init ──────────────────────────────────────────────────────
     map.on('style.load', () => {
         map.setFog({});
 
