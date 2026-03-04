@@ -394,11 +394,13 @@ body { margin: 0; padding: 0; }
         fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1,   y: 1,   z: 1   } },
         skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1, y: 1, z: 1 } },
         policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: 1,   y: 1,   z: 1   } },
-        policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 1, y: 1, z: 1 } },
+        policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: .6, y: .6, z: .6 } },
         imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5, y: 2.5, z: 2.5 } },
         akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1, y: 1, z: 1 } },
-        cross:    { url: BASE_URL + 'cross.glb',               scale: { x: 1, y: 1, z: 1 } },
+        cross:    { url: BASE_URL + 'cross.glb',               scale: { x: .35, y: .35, z: .35 } },
         lampbig:    { url: BASE_URL + 'lamp_big.glb',          scale: { x: .5, y: .5, z: .5 } },
+        lampstreet:    { url: BASE_URL + 'street_lamp_single.glb',          scale: { x: .5, y: .5, z: .5 } },
+
     };
 
     const instances = [
@@ -411,14 +413,15 @@ body { margin: 0; padding: 0; }
         { id: 'policecar-2',       model: 'policecar',    coords: [44.798720, 41.697360],     rotationY: 300  },
         { id: 'policeman-1',       model: 'policeman',    coords: [44.798500, 41.697700],     rotationY: 0    },
         { id: 'drone-1',           model: 'imeditv',      coords: [44.798500, 41.697700, 20], rotationY: 0    },
-        { id: 'cross',             model: 'cross',        coords: [44.79873, 41.69698], rotationY: 110    },
+        { id: 'cross',             model: 'cross',        coords: [44.79873, 41.69698], rotationY: 115    },
         { id: 'lampbig-1',         model: 'lampbig',      coords: [44.79891, 41.69724], rotationY: 0    },
         { id: 'lampbig-2',         model: 'lampbig',     coords: [44.79911, 41.69693], rotationY: 0    },
+        { id: 'streetlamp-1',         model: 'lampstreet',     coords: [44.79935, 41.69704], rotationY: 0    },
     ];
 
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/jorjone90/cmm5fwjth001601r07b9qbbo6',
+        style: 'mapbox://styles/jorjone90/cmmb415n1001g01s4240j3jdf',
         projection: 'globe',
         zoom: 17.8,
         minZoom: 17.5,
