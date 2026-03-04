@@ -397,9 +397,8 @@ body { margin: 0; padding: 0; }
         policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 1, y: 1, z: 1 } },
         imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5, y: 2.5, z: 2.5 } },
         akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1, y: 1, z: 1 } },
-        cross:    { url: BASE_URL + 'cross.glb',         scale: { x: 1, y: 1, z: 1 } },
-        lampbig:    { url: BASE_URL + 'lamp_big.glb',         scale: { x: .5, y: .5, z: .5 } },
-        lampclassic:    { url: BASE_URL + 'lamp_big.glb',         scale: { x: .5, y: .5, z: .5 } },
+        cross:    { url: BASE_URL + 'cross.glb',               scale: { x: 1, y: 1, z: 1 } },
+        lampbig:    { url: BASE_URL + 'lamp_big.glb',          scale: { x: .5, y: .5, z: .5 } },
     };
 
     const instances = [
@@ -412,18 +411,14 @@ body { margin: 0; padding: 0; }
         { id: 'policecar-2',       model: 'policecar',    coords: [44.798720, 41.697360],     rotationY: 300  },
         { id: 'policeman-1',       model: 'policeman',    coords: [44.798500, 41.697700],     rotationY: 0    },
         { id: 'drone-1',           model: 'imeditv',      coords: [44.798500, 41.697700, 20], rotationY: 0    },
-        { id: 'cross',             model: 'cross',        coords: [44.79873, 41.69698], rotationY: 0    },
+        { id: 'cross',             model: 'cross',        coords: [44.79873, 41.69698], rotationY: 110    },
         { id: 'lampbig-1',         model: 'lampbig',      coords: [44.79891, 41.69724], rotationY: 0    },
         { id: 'lampbig-2',         model: 'lampbig',     coords: [44.79911, 41.69693], rotationY: 0    },
-        { id: 'lampclassic-1',     model: 'lampclassic',     coords: [44.79931, 41.69656], rotationY: 0    },
-        { id: 'lampclassic-2',     model: 'lampclassic',     coords: [44.79966, 41.69607], rotationY: 0    },
-        { id: 'lampclassic-3',     model: 'lampclassic',     coords: [44.79954, 41.69624], rotationY: 0    },
-        { id: 'lampclassic-4',     model: 'lampclassic',     coords: [44.80102, 41.69444], rotationY: 0    },
     ];
 
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/jorjone90/cmm58myuk000t01r063yb09t7',
+        style: 'mapbox://styles/jorjone90/cmm5fwjth001601r07b9qbbo6',
         projection: 'globe',
         zoom: 17.8,
         minZoom: 17.5,
