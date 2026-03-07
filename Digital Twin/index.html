@@ -389,11 +389,11 @@ body { margin: 0; padding: 0; }
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDOqhSiuRb8x1lKhn6BWj8FTLGw7v-vD5S8edkrPzYF3PrpTSGNouOtZjZhL-XJTs/exec';
 
     const MODELS = {
-        busStop:     { url: BASE_URL + 'bus_stop_new.glb',     scale: { x: 1,   y: 1,   z: 1   } },
-        bus:         { url: BASE_URL + 'bus_new.glb',          scale: { x: 1,   y: 1,   z: 1   } },
-        fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1,   y: 1,   z: 1   } },
+        busStop:     { url: BASE_URL + 'bus_stop_new.glb',     scale: { x: 1, y: 1, z: 1 } },
+        bus:         { url: BASE_URL + 'bus_new.glb',          scale: { x: 1, y: 1, z: 1 } },
+        fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1, y: 1, z: 1 } },
         skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1, y: 1, z: 1 } },
-        policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: 1,   y: 1,   z: 1   } },
+        policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: .75,  y: .75,  z: .75 } },
         policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: .6, y: .6, z: .6 } },
         imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5, y: 2.5, z: 2.5 } },
         akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1, y: 1, z: 1 } },
@@ -401,27 +401,53 @@ body { margin: 0; padding: 0; }
         lampbig:     { url: BASE_URL + 'lamp_big.glb',         scale: { x: .5, y: .5, z: .5 } },
         lampstreet:  { url: BASE_URL + 'street-light-1.glb',   scale: { x: 1, y: 1, z: 1 } },
         pinetree:    { url: BASE_URL + 'pine_tree.glb',        scale: { x: 1, y: 1, z: 1 } },
-        mercedes:    { url: BASE_URL + 'mercedes_benz.glb',        scale: { x: 1, y: 1, z: 1 } },
-
+        bush:        { url: BASE_URL + 'bush.glb',             scale: { x: 1, y: 1, z: 1 } },
+        mercedes:    { url: BASE_URL + 'mercedes_benz.glb',    scale: { x: 1, y: 1, z: 1 } },
+        parlwall:    { url: BASE_URL + 'gate.glb',             scale: { x: 1, y: 1, z: 1 } },
     };
 
     const instances = [
         { id: 'bus-stop-1',        model: 'busStop',      coords: [44.798461, 41.697794],     rotationY: -63  },
         { id: 'bus-stop-2',        model: 'busStop',      coords: [44.798742, 41.697983],     rotationY: -243 },
+
         { id: 'bus-1',             model: 'bus',          coords: [44.798445, 41.697900],     rotationY: -155 },
         { id: 'bus-2',             model: 'bus',          coords: [44.798675, 41.697900],     rotationY: 25   },
-        { id: 'fordtransit-1',     model: 'fordtransit',  coords: [44.798500, 41.697800, 1],  rotationY: 63   },
+
+        { id: 'fordtransit-1',     model: 'fordtransit',  coords: [44.79929, 41.69750],  rotationY: 115   },
+        { id: 'fordtransit-2',     model: 'fordtransit',  coords: [44.79938, 41.69754],  rotationY: 115   },
+        { id: 'fordtransit-3',     model: 'fordtransit',  coords: [44.79947, 41.69757],  rotationY: 115   },
+        { id: 'fordtransit-4',     model: 'fordtransit',  coords: [44.79956, 41.69761],  rotationY: 115   },
+        { id: 'fordtransit-5',     model: 'fordtransit',  coords: [44.79993, 41.69759],  rotationY: 115   },
+        { id: 'fordtransit-6',     model: 'fordtransit',  coords: [44.80003, 41.69663],  rotationY: 115   },
+        { id: 'fordtransit-7',     model: 'fordtransit',  coords: [44.80012, 41.69667],  rotationY: 115   },
+        { id: 'fordtransit-8',     model: 'fordtransit',  coords: [44.80021, 41.69670],  rotationY: 115   },
+
         { id: 'policecar-1',       model: 'policecar',    coords: [44.798620, 41.697320, 1],  rotationY: 300  },
         { id: 'policecar-2',       model: 'policecar',    coords: [44.798720, 41.697360],     rotationY: 300  },
-        { id: 'policeman-1',       model: 'policeman',    coords: [44.798500, 41.697700],     rotationY: 0    },
+        
         { id: 'drone-1',           model: 'imeditv',      coords: [44.798500, 41.697700, 20], rotationY: 0    },
+        
         { id: 'cross',             model: 'cross',        coords: [44.79873, 41.69698], rotationY: 115    },
+
         { id: 'lampbig-1',         model: 'lampbig',      coords: [44.79891, 41.69724], rotationY: 0    },
-        { id: 'lampbig-2',         model: 'lampbig',     coords: [44.79911, 41.69693], rotationY: 0    },
-        { id: 'streetlamp-1',         model: 'lampstreet',     coords: [44.79911, 41.69738], rotationY: 115    },
-        { id: 'streetlamp-2',         model: 'lampstreet',     coords: [44.79935, 41.69704], rotationY: 115    },
-        { id: 'streetlamp-3',         model: 'lampstreet',     coords: [44.79959, 41.69670], rotationY: 115    },
-        { id: 'pine-tree',         model: 'pinetree',     coords: [44.7985, 41.6965], rotationY: 115    },
+        { id: 'lampbig-2',         model: 'lampbig',      coords: [44.79911, 41.69693], rotationY: 0    },
+
+        { id: 'streetlamp-1',      model: 'lampstreet',   coords: [44.79911, 41.69738], rotationY: 115    },
+        { id: 'streetlamp-2',      model: 'lampstreet',   coords: [44.79935, 41.69704], rotationY: 115    },
+        { id: 'streetlamp-3',      model: 'lampstreet',   coords: [44.79959, 41.69670], rotationY: 115    },
+
+        { id: 'pine-tree',         model: 'pinetree',     coords: [44.79855, 41.69656], rotationY: 115    },
+        { id: 'bush-1',            model: 'bush',         coords: [44.79908, 41.69699, 1.5], rotationY: 0    },
+        { id: 'bush-2',            model: 'bush',         coords: [44.79911, 41.69696, 1.5], rotationY: 0    },
+        { id: 'bush-3',            model: 'bush',         coords: [44.79915, 41.69688, 1.5], rotationY: 0    },
+        { id: 'bush-4',            model: 'bush',         coords: [44.79920, 41.69680, 1.5], rotationY: 0    },
+        { id: 'bush-5',            model: 'bush',         coords: [44.79885, 41.69733, 1.5], rotationY: 0    },
+        { id: 'bush-6',            model: 'bush',         coords: [44.79888, 41.69729, 1.5], rotationY: 0    },
+        { id: 'bush-7',            model: 'bush',         coords: [44.79893, 41.69721, 1.5], rotationY: 0    },
+
+        { id: 'parliament-wall-west',   model: 'parlwall',     coords: [44.79722, 41.69640],  rotationY: 0   },
+
+
         { id: 'mercedes-1',         model: 'mercedes',     coords: [44.79764, 41.69670], rotationY: 40    },
         { id: 'mercedes-2',         model: 'mercedes',     coords: [44.79772, 41.69672], rotationY: 40    },
         { id: 'mercedes-3',         model: 'mercedes',     coords: [44.79780, 41.69676], rotationY: 40    },
