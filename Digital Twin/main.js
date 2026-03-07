@@ -101,7 +101,7 @@ function buildAkatsukiInst(coords) {
         id:        'user-' + akatsukiCounter,
         model:     'akatsuki',
         coords:    [coords[0], coords[1], AKATSUKI_HEIGHT],
-        rotationY: 0,
+        rotationY: 90,
     };
 }
 
@@ -273,9 +273,9 @@ map.on('style.load', () => {
         type:          'custom',
         renderingMode: '3d',
         onAdd() {
-            // Load all static instances first, then load saved user figures
-            loadQueue(INSTANCES, () => {
-                loadExistingFigures();
+            // Load akatsuki user figures first, then static instances
+            loadExistingFigures().then(() => {
+                loadQueue(INSTANCES, null);
             });
         },
         render() { tb.update(); }

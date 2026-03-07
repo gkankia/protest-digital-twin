@@ -80,6 +80,16 @@ const INSTANCES = [
     { id: 'cedar-21',      model: 'cedar_1',     coords: [44.80015,  41.69509]                       },
     { id: 'cedar-22',      model: 'cedar_2',     coords: [44.80024,  41.69496]                       },
     { id: 'cedar-23',      model: 'cedar_1',     coords: [44.80042,  41.69528]                       },
+    { id: 'cedar-24',      model: 'cedar_1',     coords: [44.80059,  41.69503]                       },
+    { id: 'cedar-25',      model: 'cedar_2',     coords: [44.79791,  41.69907]                       },
+    { id: 'cedar-26',      model: 'cedar_1',     coords: [44.79816,  41.69880]                       },
+    { id: 'cedar-27',      model: 'cedar_1',     coords: [44.79927,  41.69649]                       },
+    { id: 'cedar-28',      model: 'cedar_1',     coords: [44.79849,  41.69631]                       },
+    { id: 'cedar-29',      model: 'cedar_1',     coords: [44.79867,  41.69639]                       },
+    { id: 'cedar-30',      model: 'cedar_2',     coords: [44.79880,  41.69645]                       },
+    { id: 'cedar-31',      model: 'cedar_1',     coords: [44.79971,  41.69654]                       },
+    { id: 'cedar-32',      model: 'cedar_2',     coords: [44.79964,  41.69662]                       },
+    { id: 'cedar-33',      model: 'cedar_1',     coords: [44.79831,  41.69625]                       },
 
     // ── Bushes ───────────────────────────────────────────────────
     { id: 'bush-1',        model: 'bush',        coords: [44.79908,  41.69699, 2],   rotationY: 0    },
