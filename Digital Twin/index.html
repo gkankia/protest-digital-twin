@@ -5,7 +5,7 @@
 <title>პროტესტის ციფრული ტყუპი | თბილისი</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<!-- SEO Meta -->
+<!-- SEO -->
 <meta name="description" content="პროტესტის ციფრული ტყუპი — თბილისი. მოათავსე შენი ფიგურა რუკაზე და დატოვე შენი ხმა ისტორიისთვის.">
 <meta name="keywords" content="პროტესტი, თბილისი, საქართველო, ციფრული ტყუპი, რუკა, მოქალაქეები, demonstration, Tbilisi, Georgia, digital twin">
 <meta name="author" content="Protest Digital Twin">
@@ -13,19 +13,19 @@
 <link rel="canonical" href="https://gkankia.github.io/protest-digital-twin/">
 
 <!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="პროტესტის ციფრული ტყუპი | თბილისი">
+<meta property="og:type"        content="website">
+<meta property="og:title"       content="პროტესტის ციფრული ტყუპი | თბილისი">
 <meta property="og:description" content="მოათავსე შენი ფიგურა რუკაზე. შენი ყოფნა ისტორიის ნაწილი გახდება.">
-<meta property="og:url" content="https://gkankia.github.io/protest-digital-twin/">
-<meta property="og:locale" content="ka_GE">
-<meta property="og:site_name" content="პროტესტის ციფრული ტყუპი">
+<meta property="og:url"         content="https://gkankia.github.io/protest-digital-twin/">
+<meta property="og:locale"      content="ka_GE">
+<meta property="og:site_name"   content="პროტესტის ციფრული ტყუპი">
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="პროტესტის ციფრული ტყუპი | თბილისი">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="პროტესტის ციფრული ტყუპი | თბილისი">
 <meta name="twitter:description" content="მოათავსე შენი ფიგურა რუკაზე. შენი ყოფნა ისტორიის ნაწილი გახდება.">
 
-<!-- Schema.org structured data -->
+<!-- Schema.org -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,21 +46,22 @@
 @import url("//cdn.web-fonts.ge/fonts/bpg-nino-medium-condenced/css/bpg-nino-medium-condenced.min.css");
 </style>
 
+<!-- Mapbox & Threebox -->
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.19.0/mapbox-gl.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.min.js"></script>
 <link href="https://cdn.jsdelivr.net/gh/jscastro76/threebox@v.2.2.2/dist/threebox.css" rel="stylesheet">
 
 <style>
-/* Base font — BPG Arial Caps for body text */
+/* ── Fonts ── */
 body, button, input, textarea, label, p, div, span {
     font-family: 'BPG Arial Caps', sans-serif;
 }
-/* Display font — BPG Nino Medium Condensed for headings & CTAs */
 h2, #akatsuki-btn, #submit-btn, #about-btn, #about-panel h2 {
     font-family: 'BPG Nino Medium Condenced', 'BPG Arial Caps', sans-serif;
 }
 
+/* ── Base ── */
 body { margin: 0; padding: 0; }
 #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 #map.placing { cursor: crosshair; }
@@ -86,8 +87,10 @@ body { margin: 0; padding: 0; }
     transition: all 0.2s;
     white-space: nowrap;
 }
-#akatsuki-btn:hover, #akatsuki-btn.active { background: #e94560; }
+#akatsuki-btn:hover,
+#akatsuki-btn.active { background: #e94560; }
 
+/* ── Place hint ── */
 #place-hint {
     position: absolute;
     top: 20px;
@@ -130,6 +133,7 @@ body { margin: 0; padding: 0; }
     align-items: center;
 }
 #modal-overlay.visible { display: flex; }
+
 #modal {
     background: #1a1a2e;
     border: 1px solid #e94560;
@@ -142,11 +146,11 @@ body { margin: 0; padding: 0; }
     max-height: 90vh;
     overflow-y: auto;
 }
-#modal h2 { margin: 0 0 6px; font-size: 20px; color: #e94560; }
-#modal p.subtitle { margin: 0 0 20px; font-size: 13px; color: #aaa; }
+#modal h2           { margin: 0 0 6px; font-size: 20px; color: #e94560; }
+#modal p.subtitle   { margin: 0 0 20px; font-size: 13px; color: #aaa; }
 
-.field-group { margin-bottom: 16px; }
-.field-group label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+.field-group        { margin-bottom: 16px; }
+.field-group label  { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
 .field-group input[type="text"],
 .field-group input[type="number"] {
     width: 100%;
@@ -176,11 +180,11 @@ body { margin: 0; padding: 0; }
     text-align: center;
     font-family: 'BPG Arial Caps', sans-serif;
 }
-.gender-btn:hover { border-color: #e94560; color: #fff; }
-.gender-btn.selected { border-color: #e94560; background: #e94560; color: #fff; }
+.gender-btn:hover             { border-color: #e94560; color: #fff; }
+.gender-btn.selected          { border-color: #e94560; background: #e94560; color: #fff; }
 
-.question-block { margin-bottom: 16px; }
-.question-block label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+.question-block               { margin-bottom: 16px; }
+.question-block label         { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
 .question-block textarea {
     width: 100%;
     height: 70px;
@@ -214,13 +218,9 @@ body { margin: 0; padding: 0; }
 #submit-btn:hover:not(:disabled) { background: #c73652; }
 #submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-#success-msg {
-    display: none;
-    text-align: center;
-    padding: 20px 0 10px;
-}
+#success-msg            { display: none; text-align: center; padding: 20px 0 10px; }
 #success-msg .checkmark { font-size: 48px; }
-#success-msg p { color: #aaa; margin-top: 10px; font-size: 14px; }
+#success-msg p          { color: #aaa; margin-top: 10px; font-size: 14px; }
 
 /* ── About button ── */
 #about-btn {
@@ -316,6 +316,7 @@ body { margin: 0; padding: 0; }
 <div id="map"></div>
 <div id="tooltip"></div>
 
+<!-- About button & panel -->
 <button id="about-btn">პროექტის შესახებ</button>
 
 <div id="about-overlay">
@@ -325,14 +326,16 @@ body { margin: 0; padding: 0; }
         <h2>პროექტის შესახებ</h2>
         <span class="about-subtitle">პროტესტის ციფრული ტყუპი · თბილისი, საქართველო</span>
         <p>ეს არის პროტესტის სივრცის ცოცხალი ციფრული ტყუპი, რომელიც ინახავს მათ ყოფნას და ხმებს, ვინც გამოვიდა. რუკაზე ყოველი ფიგურა წარმოადგენს რეალურ ადამიანს, რომელმაც თავი განათავსა აქ.</p>
-        <p>„თავის განთავსება რუკაზე" ღილაკზე დაჭერით შენ ტოვებ მუდმივ კვალს — შენი ფიგურა, შენი ასაკი და სიტყვები ხდება ამ ისტორიული მომენტის ნაწილი.</p>
+        <p>„გამოდი რუსთაველზე" ღილაკზე დაჭერით შენ ტოვებ მუდმივ კვალს — შენი ფიგურა, შენი ასაკი და სიტყვები ხდება ამ ისტორიული მომენტის ნაწილი.</p>
         <p>პროექტი შეიქმნა კოლექტიური ყოფნის დასაფიქსირებლად და იმისათვის, რომ ყველა მონაწილეს მიეცეს ხმა, რომელიც გაგრძელდება პროტესტის შემდეგაც.</p>
     </div>
 </div>
 
+<!-- Place button & hint -->
 <button id="akatsuki-btn">გამოდი რუსთაველზე</button>
 <div id="place-hint">დააჭირე რუკაზე ნებისმიერ ადგილს · გასაუქმებლად დააჭირე Esc</div>
 
+<!-- Registration modal -->
 <div id="modal-overlay">
     <div id="modal">
         <div id="form-view">
@@ -343,7 +346,6 @@ body { margin: 0; padding: 0; }
                 <label>მეტსახელი</label>
                 <input type="text" id="nickname" maxlength="50" placeholder="შეიყვანე მეტსახელი...">
             </div>
-
             <div class="field-group">
                 <label>ასაკი</label>
                 <input type="number" id="age" min="1" max="120" placeholder="შენი ასაკი">
@@ -382,341 +384,10 @@ body { margin: 0; padding: 0; }
     </div>
 </div>
 
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
+<!-- JS: load order matters — models → instances → main logic -->
+<script src="models.js"></script>
+<script src="instances.js"></script>
+<script src="main.js"></script>
 
-    const BASE_URL        = 'https://raw.githubusercontent.com/gkankia/protest-digital-twin/main/Digital%20Twin/models/';
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDOqhSiuRb8x1lKhn6BWj8FTLGw7v-vD5S8edkrPzYF3PrpTSGNouOtZjZhL-XJTs/exec';
-
-    const MODELS = {
-        busStop:     { url: BASE_URL + 'bus_stop_new.glb',     scale: { x: 1, y: 1, z: 1 } },
-        bus:         { url: BASE_URL + 'bus_new.glb',          scale: { x: 1, y: 1, z: 1 } },
-        fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1, y: 1, z: 1 } },
-        skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1, y: 1, z: 1 } },
-        policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: .75,  y: .75,  z: .75 } },
-        policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: .6, y: .6, z: .6 } },
-        imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5, y: 2.5, z: 2.5 } },
-        akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1, y: 1, z: 1 } },
-        cross:       { url: BASE_URL + 'cross.glb',            scale: { x: .35, y: .35, z: .35 } },
-        lampbig:     { url: BASE_URL + 'lamp_big.glb',         scale: { x: .5, y: .5, z: .5 } },
-        lampstreet:  { url: BASE_URL + 'street-light-1.glb',   scale: { x: 1, y: 1, z: 1 } },
-        pinetree:    { url: BASE_URL + 'pine_tree.glb',        scale: { x: 1, y: 1, z: 1 } },
-        bush:        { url: BASE_URL + 'bush.glb',             scale: { x: 1, y: 1, z: 1 } },
-        mercedes:    { url: BASE_URL + 'mercedes_benz.glb',    scale: { x: 1, y: 1, z: 1 } },
-        //parlwall:    { url: BASE_URL + 'gate.glb',             scale: { x: 1, y: 1, z: 1 } },
-    };
-
-    const instances = [
-        { id: 'bus-stop-1',        model: 'busStop',      coords: [44.798461, 41.697794],     rotationY: -63  },
-        { id: 'bus-stop-2',        model: 'busStop',      coords: [44.798742, 41.697983],     rotationY: -243 },
-
-        { id: 'bus-1',             model: 'bus',          coords: [44.798445, 41.697900],     rotationY: -155 },
-        { id: 'bus-2',             model: 'bus',          coords: [44.798675, 41.697900],     rotationY: 25   },
-
-        { id: 'fordtransit-1',     model: 'fordtransit',  coords: [44.79929, 41.69750],  rotationY: 115   },
-        { id: 'fordtransit-2',     model: 'fordtransit',  coords: [44.79938, 41.69754],  rotationY: 115   },
-        { id: 'fordtransit-3',     model: 'fordtransit',  coords: [44.79947, 41.69757],  rotationY: 115   },
-        { id: 'fordtransit-4',     model: 'fordtransit',  coords: [44.79956, 41.69761],  rotationY: 115   },
-        { id: 'fordtransit-5',     model: 'fordtransit',  coords: [44.79993, 41.69759],  rotationY: 115   },
-        { id: 'fordtransit-6',     model: 'fordtransit',  coords: [44.80003, 41.69663],  rotationY: 115   },
-        { id: 'fordtransit-7',     model: 'fordtransit',  coords: [44.80012, 41.69667],  rotationY: 115   },
-        { id: 'fordtransit-8',     model: 'fordtransit',  coords: [44.80021, 41.69670],  rotationY: 115   },
-
-        { id: 'policecar-1',       model: 'policecar',    coords: [44.798620, 41.697320, 1],  rotationY: 300  },
-        { id: 'policecar-2',       model: 'policecar',    coords: [44.798720, 41.697360],     rotationY: 300  },
-        
-        { id: 'drone-1',           model: 'imeditv',      coords: [44.798500, 41.697700, 20], rotationY: 0    },
-        
-        { id: 'cross',             model: 'cross',        coords: [44.79873, 41.69698], rotationY: 115    },
-
-        { id: 'lampbig-1',         model: 'lampbig',      coords: [44.79891, 41.69724], rotationY: 0    },
-        { id: 'lampbig-2',         model: 'lampbig',      coords: [44.79911, 41.69693], rotationY: 0    },
-
-        { id: 'streetlamp-1',      model: 'lampstreet',   coords: [44.79911, 41.69738], rotationY: 115    },
-        { id: 'streetlamp-2',      model: 'lampstreet',   coords: [44.79935, 41.69704], rotationY: 115    },
-        { id: 'streetlamp-3',      model: 'lampstreet',   coords: [44.79959, 41.69670], rotationY: 115    },
-
-        { id: 'pine-tree-1',         model: 'pinetree',     coords: [44.79893, 41.69646]  },
-        { id: 'pine-tree-2',         model: 'pinetree',     coords: [44.79905, 41.69649]  },
-
-        { id: 'bush-1',            model: 'bush',         coords: [44.79908, 41.69699, 2], rotationY: 0    },
-        { id: 'bush-2',            model: 'bush',         coords: [44.79911, 41.69696, 2], rotationY: 0    },
-        { id: 'bush-3',            model: 'bush',         coords: [44.79915, 41.69688, 2], rotationY: 0    },
-        { id: 'bush-4',            model: 'bush',         coords: [44.79920, 41.69680, 2], rotationY: 0    },
-        { id: 'bush-5',            model: 'bush',         coords: [44.79885, 41.69733, 2], rotationY: 0    },
-        { id: 'bush-6',            model: 'bush',         coords: [44.79888, 41.69729, 2], rotationY: 0    },
-        { id: 'bush-7',            model: 'bush',         coords: [44.79893, 41.69721, 2], rotationY: 0    },
-
-        //{ id: 'parliament-wall-west',   model: 'parlwall',     coords: [44.79722, 41.69640],  rotationY: 0   },
-
-        { id: 'mercedes-1',         model: 'mercedes',     coords: [44.79764, 41.69670], rotationY: 40    },
-        { id: 'mercedes-2',         model: 'mercedes',     coords: [44.79772, 41.69672], rotationY: 40    },
-        { id: 'mercedes-3',         model: 'mercedes',     coords: [44.79780, 41.69676], rotationY: 40    },
-        { id: 'mercedes-4',         model: 'mercedes',     coords: [44.79791, 41.69679], rotationY: 40    },
-        { id: 'mercedes-5',         model: 'mercedes',     coords: [44.79768, 41.69671], rotationY: 40    },
-        { id: 'mercedes-6',         model: 'mercedes',     coords: [44.79776, 41.69674], rotationY: 40    },
-        { id: 'mercedes-7',         model: 'mercedes',     coords: [44.79786, 41.69678], rotationY: 40    },
-        { id: 'mercedes-8',         model: 'mercedes',     coords: [44.79793, 41.69674], rotationY: 40    },
-        { id: 'mercedes-9',         model: 'mercedes',     coords: [44.79789, 41.69673], rotationY: 40    },
-        { id: 'mercedes-10',         model: 'mercedes',     coords: [44.79784, 41.69672], rotationY: 40    },
-        { id: 'mercedes-11',         model: 'mercedes',     coords: [44.79780, 41.69670], rotationY: 40    },
-        { id: 'mercedes-12',         model: 'mercedes',     coords: [44.79775, 41.69668], rotationY: 40    },
-        { id: 'mercedes-13',         model: 'mercedes',     coords: [44.79771, 41.69666], rotationY: 40    },
-        { id: 'mercedes-14',         model: 'mercedes',     coords: [44.79767, 41.69665], rotationY: 40    },
-    ];
-
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/jorjone90/cmmb415n1001g01s4240j3jdf',
-        projection: 'globe',
-        zoom: 17.8,
-        minZoom: 17.5,
-        maxZoom: 19.5,
-        center: [44.799, 41.697],
-        pitch: 52.76,
-        bearing: -132.62,
-        antialias: true,
-    });
-
-    map.addControl(new mapboxgl.NavigationControl());
-    map.scrollZoom.enable();
-
-    let tb;
-    const userFigures = [];
-
-    const tooltip = document.getElementById('tooltip');
-    const genderKa = { male: 'მამრობითი', female: 'მდედრობითი', other: 'სხვა' };
-
-    function showTooltip(x, y, nickname, age, gender) {
-        tooltip.innerHTML = `<strong>${nickname}</strong><br>ასაკი: ${age}<br>სქესი: ${genderKa[gender] || gender}`;
-        tooltip.style.left    = (x + 14) + 'px';
-        tooltip.style.top     = (y - 10) + 'px';
-        tooltip.style.display = 'block';
-    }
-    function hideTooltip() { tooltip.style.display = 'none'; }
-
-    function loadAndPlace(inst, onDone) {
-        const def = MODELS[inst.model];
-        if (!def) { if (onDone) onDone(); return; }
-
-        const alt    = inst.coords[2] || 0;
-        const lngLat = [inst.coords[0], inst.coords[1]];
-
-        tb.loadObj({
-            type:     'glb',
-            obj:      def.url + '?i=' + inst.id,  // unique URL per instance defeats Threebox cache
-            scale:    def.scale,
-            units:    'meters',
-            rotation: { x: 90, y: inst.rotationY || 0, z: 0 },
-            anchor:   'bottom',
-        }, (obj) => {
-            obj.setCoords([...lngLat, alt]);
-            tb.add(obj);
-            if (onDone) onDone();
-        });
-    }
-
-    function loadAllModels(list, onDone) {
-        let i = 0;
-        function next() {
-            if (i >= list.length) { onDone(); return; }
-            loadAndPlace(list[i++], next);
-        }
-        next();
-    }
-
-    const AKATSUKI_HEIGHT = 1;
-    let akatsukiCounter = 0;
-
-    function placeAkatsuki(coords, nickname, age, gender) {
-        akatsukiCounter++;
-        loadAndPlace({
-            id:        'user-' + akatsukiCounter,
-            model:     'akatsuki',
-            coords:    [coords[0], coords[1], AKATSUKI_HEIGHT],
-            rotationY: 0,
-        }, null);
-        userFigures.push({ nickname, age, gender, coords });
-    }
-
-    async function loadExistingFigures() {
-        try {
-            const res  = await fetch(APPS_SCRIPT_URL);
-            const data = await res.json();
-            data.forEach((row, i) => {
-                if (!row.latitude || !row.longitude) return;
-                setTimeout(() => {
-                    placeAkatsuki(
-                        [parseFloat(row.longitude), parseFloat(row.latitude)],
-                        row.nickname || 'ანონიმური',
-                        row.age      || '?',
-                        row.gender   || '?'
-                    );
-                }, i * 400);
-            });
-        } catch (err) {
-            console.warn('ფიგურების ჩატვირთვა ვერ მოხერხდა:', err);
-        }
-    }
-
-    map.on('mousemove', (e) => {
-        if (!userFigures.length) return;
-        const mp = e.point;
-        let found = false;
-        for (const fig of userFigures) {
-            const fp = map.project([fig.coords[0], fig.coords[1]]);
-            const dx = mp.x - fp.x, dy = mp.y - fp.y;
-            if (Math.sqrt(dx * dx + dy * dy) < 20) {
-                showTooltip(mp.x, mp.y, fig.nickname, fig.age, fig.gender);
-                found = true;
-                break;
-            }
-        }
-        if (!found) hideTooltip();
-    });
-
-    let placingMode    = false;
-    let pendingCoords  = null;
-    let selectedGender = null;
-
-    const akatsukiBtn = document.getElementById('akatsuki-btn');
-    const placeHint   = document.getElementById('place-hint');
-    const overlay     = document.getElementById('modal-overlay');
-    const formView    = document.getElementById('form-view');
-    const successMsg  = document.getElementById('success-msg');
-    const submitBtn   = document.getElementById('submit-btn');
-
-    akatsukiBtn.addEventListener('click', () => {
-        placingMode = !placingMode;
-        akatsukiBtn.classList.toggle('active', placingMode);
-        map.getCanvas().classList.toggle('placing', placingMode);
-        placeHint.style.display = placingMode ? 'block' : 'none';
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && placingMode) {
-            placingMode = false;
-            akatsukiBtn.classList.remove('active');
-            map.getCanvas().classList.remove('placing');
-            placeHint.style.display = 'none';
-        }
-    });
-
-    map.on('click', (e) => {
-        if (!placingMode) return;
-        pendingCoords = [e.lngLat.lng, e.lngLat.lat];
-        placingMode   = false;
-        akatsukiBtn.classList.remove('active');
-        map.getCanvas().classList.remove('placing');
-        placeHint.style.display = 'none';
-
-        selectedGender = null;
-        document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
-        document.getElementById('nickname').value = '';
-        document.getElementById('age').value      = '';
-        document.getElementById('q1').value       = '';
-        document.getElementById('q2').value       = '';
-        document.getElementById('q3').value       = '';
-        ['q1','q2','q3'].forEach(id => {
-            document.getElementById(id + '-count').textContent = '0';
-        });
-        formView.style.display   = 'block';
-        successMsg.style.display = 'none';
-        submitBtn.textContent    = 'გაგზავნა';
-        submitBtn.disabled       = false;
-        overlay.classList.add('visible');
-    });
-
-    document.querySelectorAll('.gender-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            selectedGender = btn.dataset.gender;
-        });
-    });
-
-    ['q1','q2','q3'].forEach(id => {
-        document.getElementById(id).addEventListener('input', function () {
-            document.getElementById(id + '-count').textContent = this.value.length;
-        });
-    });
-
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) overlay.classList.remove('visible');
-    });
-
-    submitBtn.addEventListener('click', async () => {
-        const nickname = document.getElementById('nickname').value.trim();
-        const age      = document.getElementById('age').value.trim();
-        if (!nickname)       { alert('გთხოვთ შეიყვანოთ მეტსახელი.');  return; }
-        if (!age)            { alert('გთხოვთ შეიყვანოთ ასაკი.');      return; }
-        if (!selectedGender) { alert('გთხოვთ აირჩიოთ სქესი.');        return; }
-
-        submitBtn.textContent = '⏳ იგზავნება...';
-        submitBtn.disabled    = true;
-
-        const payload = {
-            nickname,
-            age,
-            gender:    selectedGender,
-            latitude:  pendingCoords[1],
-            longitude: pendingCoords[0],
-            q1: document.getElementById('q1').value.trim(),
-            q2: document.getElementById('q2').value.trim(),
-            q3: document.getElementById('q3').value.trim(),
-        };
-
-        try {
-            await fetch(APPS_SCRIPT_URL, {
-                method:  'POST',
-                mode:    'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(payload),
-            });
-        } catch (err) {
-            console.error('გაგზავნის შეცდომა:', err);
-        }
-
-        placeAkatsuki(pendingCoords, nickname, age, selectedGender);
-
-        formView.style.display   = 'none';
-        successMsg.style.display = 'block';
-        setTimeout(() => overlay.classList.remove('visible'), 3000);
-    });
-
-    // ── About panel ───────────────────────────────────────────────
-    const aboutBtn     = document.getElementById('about-btn');
-    const aboutOverlay = document.getElementById('about-overlay');
-    const aboutClose   = document.getElementById('about-close');
-    const aboutBlur    = document.getElementById('about-blur');
-
-    aboutBtn.addEventListener('click',   () => aboutOverlay.classList.add('visible'));
-    aboutClose.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
-    aboutBlur.addEventListener('click',  () => aboutOverlay.classList.remove('visible'));
-
-    // ── Init ──────────────────────────────────────────────────────
-    map.on('style.load', () => {
-        map.setFog({});
-
-        tb = new Threebox(
-            map,
-            map.getCanvas().getContext('webgl'),
-            { defaultLights: true }
-        );
-        window.tb = tb;
-
-        map.addLayer({
-            id: 'all-models',
-            type: 'custom',
-            renderingMode: '3d',
-            onAdd() {
-                loadAllModels(instances, () => {
-                    loadExistingFigures();
-                });
-            },
-            render() { tb.update(); }
-        });
-    });
-</script>
 </body>
 </html>

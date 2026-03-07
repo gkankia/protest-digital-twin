@@ -1,0 +1,91 @@
+// ── instances.js ──────────────────────────────────────────────────────────────
+// All static scene instances. Each entry maps to a key in MODELS (models.js).
+//
+// Fields:
+//   id        — unique string identifier
+//   model     — key from MODELS
+//   coords    — [lng, lat] or [lng, lat, altMetres]
+//   rotationY — degrees (optional, defaults to 0)
+
+const INSTANCES = [
+
+    // ── Bus stops ────────────────────────────────────────────────
+    { id: 'bus-stop-1',    model: 'busStop',     coords: [44.798461, 41.697794],     rotationY: -63  },
+    { id: 'bus-stop-2',    model: 'busStop',     coords: [44.798742, 41.697983],     rotationY: -243 },
+
+    // ── Buses ────────────────────────────────────────────────────
+    { id: 'bus-1',         model: 'bus',         coords: [44.798445, 41.697900],     rotationY: -155 },
+    { id: 'bus-2',         model: 'bus',         coords: [44.798675, 41.697900],     rotationY: 25   },
+
+    // ── Ford Transits (police minivans) ──────────────────────────
+    { id: 'fordtransit-1', model: 'fordtransit', coords: [44.79929,  41.69750],      rotationY: 115  },
+    { id: 'fordtransit-2', model: 'fordtransit', coords: [44.79938,  41.69754],      rotationY: 115  },
+    { id: 'fordtransit-3', model: 'fordtransit', coords: [44.79947,  41.69757],      rotationY: 115  },
+    { id: 'fordtransit-4', model: 'fordtransit', coords: [44.79956,  41.69761],      rotationY: 115  },
+    { id: 'fordtransit-5', model: 'fordtransit', coords: [44.79993,  41.69759],      rotationY: 115  },
+    { id: 'fordtransit-6', model: 'fordtransit', coords: [44.80003,  41.69663],      rotationY: 115  },
+    { id: 'fordtransit-7', model: 'fordtransit', coords: [44.80012,  41.69667],      rotationY: 115  },
+    { id: 'fordtransit-8', model: 'fordtransit', coords: [44.80021,  41.69670],      rotationY: 115  },
+
+    // ── Police cars ──────────────────────────────────────────────
+    { id: 'policecar-1',   model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },
+    { id: 'policecar-2',   model: 'policecar',   coords: [44.798720, 41.697360],     rotationY: 300  },
+
+    // ── Policemen ────────────────────────────────────────────────
+    { id: 'policeman-1',   model: 'policeman',   coords: [44.798500, 41.697700],     rotationY: 0    },
+
+    // ── Drone ────────────────────────────────────────────────────
+    { id: 'drone-1',       model: 'imeditv',     coords: [44.798500, 41.697700, 20], rotationY: 0    },
+
+    // ── Cross ────────────────────────────────────────────────────
+    { id: 'cross-1',       model: 'cross',       coords: [44.79873,  41.69698],      rotationY: 115  },
+
+    // ── Large lamps ──────────────────────────────────────────────
+    { id: 'lampbig-1',     model: 'lampbig',     coords: [44.79891,  41.69724],      rotationY: 0    },
+    { id: 'lampbig-2',     model: 'lampbig',     coords: [44.79911,  41.69693],      rotationY: 0    },
+
+    // ── Street lamps ─────────────────────────────────────────────
+    { id: 'streetlamp-1',  model: 'lampstreet',  coords: [44.79911,  41.69738],      rotationY: 115  },
+    { id: 'streetlamp-2',  model: 'lampstreet',  coords: [44.79935,  41.69704],      rotationY: 115  },
+    { id: 'streetlamp-3',  model: 'lampstreet',  coords: [44.79959,  41.69670],      rotationY: 115  },
+
+    // ── Pine trees ───────────────────────────────────────────────
+    { id: 'pine-1',        model: 'pinetree',    coords: [44.79893,  41.69646]                       },
+    { id: 'pine-2',        model: 'pinetree',    coords: [44.79905,  41.69649]                       },
+
+    // ── Cedars ───────────────────────────────────────────────────
+    { id: 'cedar-1',       model: 'cedar',       coords: [44.79756,  41.69903]                       },
+    { id: 'cedar-2',       model: 'cedar',       coords: [44.79769,  41.69891]                       },
+    { id: 'cedar-3',       model: 'cedar',       coords: [44.79808,  41.69810]                       },
+    { id: 'cedar-4',       model: 'cedar',       coords: [44.79819,  41.69797]                       },
+    { id: 'cedar-5',       model: 'cedar',       coords: [44.79836,  41.69789]                       },
+    { id: 'cedar-6',       model: 'cedar',       coords: [44.79851,  41.69829]                       },
+    { id: 'cedar-7',       model: 'cedar',       coords: [44.79860,  41.69751]                       },
+    { id: 'cedar-8',       model: 'cedar',       coords: [44.79882,  41.69784]                       },
+
+    // ── Bushes ───────────────────────────────────────────────────
+    { id: 'bush-1',        model: 'bush',        coords: [44.79908,  41.69699, 2],   rotationY: 0    },
+    { id: 'bush-2',        model: 'bush',        coords: [44.79911,  41.69696, 2],   rotationY: 0    },
+    { id: 'bush-3',        model: 'bush',        coords: [44.79915,  41.69688, 2],   rotationY: 0    },
+    { id: 'bush-4',        model: 'bush',        coords: [44.79920,  41.69680, 2],   rotationY: 0    },
+    { id: 'bush-5',        model: 'bush',        coords: [44.79885,  41.69733, 2],   rotationY: 0    },
+    { id: 'bush-6',        model: 'bush',        coords: [44.79888,  41.69729, 2],   rotationY: 0    },
+    { id: 'bush-7',        model: 'bush',        coords: [44.79893,  41.69721, 2],   rotationY: 0    },
+
+    // ── Mercedes (GD cars) ───────────────────────────────────────
+    { id: 'mercedes-1',    model: 'mercedes',    coords: [44.79764,  41.69670],      rotationY: 40   },
+    { id: 'mercedes-2',    model: 'mercedes',    coords: [44.79772,  41.69672],      rotationY: 40   },
+    { id: 'mercedes-3',    model: 'mercedes',    coords: [44.79780,  41.69676],      rotationY: 40   },
+    { id: 'mercedes-4',    model: 'mercedes',    coords: [44.79791,  41.69679],      rotationY: 40   },
+    { id: 'mercedes-5',    model: 'mercedes',    coords: [44.79768,  41.69671],      rotationY: 40   },
+    { id: 'mercedes-6',    model: 'mercedes',    coords: [44.79776,  41.69674],      rotationY: 40   },
+    { id: 'mercedes-7',    model: 'mercedes',    coords: [44.79786,  41.69678],      rotationY: 40   },
+    { id: 'mercedes-8',    model: 'mercedes',    coords: [44.79793,  41.69674],      rotationY: 40   },
+    { id: 'mercedes-9',    model: 'mercedes',    coords: [44.79789,  41.69673],      rotationY: 40   },
+    { id: 'mercedes-10',   model: 'mercedes',    coords: [44.79784,  41.69672],      rotationY: 40   },
+    { id: 'mercedes-11',   model: 'mercedes',    coords: [44.79780,  41.69670],      rotationY: 40   },
+    { id: 'mercedes-12',   model: 'mercedes',    coords: [44.79775,  41.69668],      rotationY: 40   },
+    { id: 'mercedes-13',   model: 'mercedes',    coords: [44.79771,  41.69666],      rotationY: 40   },
+    { id: 'mercedes-14',   model: 'mercedes',    coords: [44.79767,  41.69665],      rotationY: 40   },
+
+];
