@@ -19,5 +19,7 @@ const MODELS = {
     pinetree:    { url: BASE_URL + 'pine_tree.glb',        scale: { x: 1,    y: 1,    z: 1    } },
     bush:        { url: BASE_URL + 'bush.glb',             scale: { x: 1,    y: 1,    z: 1    } },
     mercedes:    { url: BASE_URL + 'mercedes_benz.glb',    scale: { x: 1,    y: 1,    z: 1    } },
-    cedar:       { url: BASE_URL + 'cedar.glb',            scale: { x: 1,    y: 1,    z: 1    } },
+    cedar_1:     { url: BASE_URL + 'cedar-1.glb',          scale: { x: 1,    y: 1,    z: 1    } },
+    cedar_2:     { url: BASE_URL + 'cedar-2.glb',          scale: { x: .75,  y: .75,  z: .75  } },
+
 };

@@ -52,6 +52,9 @@ const INSTANCES = [
     // ── Pine trees ───────────────────────────────────────────────
     { id: 'pine-1',        model: 'pinetree',    coords: [44.79893,  41.69646]                       },
     { id: 'pine-2',        model: 'pinetree',    coords: [44.79905,  41.69649]                       },
+    { id: 'pine-3',        model: 'pinetree',    coords: [44.79835,  41.69758]                       },
+    { id: 'pine-4',        model: 'pinetree',    coords: [44.79916,  41.69762]                       },
+
 
     // ── Cedars ───────────────────────────────────────────────────
     { id: 'cedar-1',       model: 'cedar',       coords: [44.79756,  41.69903]                       },
@@ -60,8 +63,23 @@ const INSTANCES = [
     { id: 'cedar-4',       model: 'cedar',       coords: [44.79819,  41.69797]                       },
     { id: 'cedar-5',       model: 'cedar',       coords: [44.79836,  41.69789]                       },
     { id: 'cedar-6',       model: 'cedar',       coords: [44.79851,  41.69829]                       },
-    { id: 'cedar-7',       model: 'cedar',       coords: [44.79860,  41.69751]                       },
+    { id: 'cedar-7',       model: 'cedar',       coords: [44.79868,  41.69752]                       },
     { id: 'cedar-8',       model: 'cedar',       coords: [44.79882,  41.69784]                       },
+    { id: 'cedar-9',       model: 'cedar',       coords: [44.79952,  41.69678]                       },
+    { id: 'cedar-10',      model: 'cedar',       coords: [44.79923,  41.69658]                       },
+    { id: 'cedar-11',      model: 'cedar',       coords: [44.79936,  41.69646]                       },
+    { id: 'cedar-12',      model: 'cedar',       coords: [44.79950,  41.69621]                       },
+    { id: 'cedar-13',      model: 'cedar',       coords: [44.79961,  41.69612]                       },
+    { id: 'cedar-14',      model: 'cedar',       coords: [44.79968,  41.69595]                       },
+    { id: 'cedar-15',      model: 'cedar',       coords: [44.79978,  41.69580]                       },
+    { id: 'cedar-16',      model: 'cedar',       coords: [44.79989,  41.69631]                       },
+    { id: 'cedar-17',      model: 'cedar',       coords: [44.80020,  41.69584]                       },
+    { id: 'cedar-18',      model: 'cedar',       coords: [44.80032,  41.69569]                       },
+    { id: 'cedar-19',      model: 'cedar',       coords: [44.80038,  41.69560]                       },
+    { id: 'cedar-20',      model: 'cedar',       coords: [44.80000,  41.69531]                       },
+    { id: 'cedar-21',      model: 'cedar',       coords: [44.80015,  41.69509]                       },
+    { id: 'cedar-22',      model: 'cedar',       coords: [44.80024,  41.69496]                       },
+    { id: 'cedar-23',      model: 'cedar',       coords: [44.80042,  41.69528]                       },
 
     // ── Bushes ───────────────────────────────────────────────────
     { id: 'bush-1',        model: 'bush',        coords: [44.79908,  41.69699, 2],   rotationY: 0    },
