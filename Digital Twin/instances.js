@@ -26,6 +26,11 @@ const INSTANCES = [
 
     // ── Barricades ──────────────────────────
     { id: 'barricade-E',   model: 'barricadeE',  coords: [44.79864,  41.69686, 1],   rotationY: 28   },
+    { id: 'barricade-N',   model: 'barricadeS',  coords: [44.79782,  41.69704, 1],   rotationY: 28   },
+    { id: 'barricade-S',   model: 'barricadeN',  coords: [44.79831,  41.69633, 1],   rotationY: 28   },
+    { id: 'barricade-W',   model: 'barricadeW',  coords: [44.79720,  41.69630, 1],   rotationY: 28   },
+
+
 
     // ── Police cars ──────────────────────────────────────────────
     { id: 'policecar-1',   model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },
@@ -89,12 +94,15 @@ const INSTANCES = [
     { id: 'cedar-25',      model: 'cedar_2',     coords: [44.79791,  41.69907]                       },
     { id: 'cedar-26',      model: 'cedar_1',     coords: [44.79816,  41.69880]                       },
     { id: 'cedar-27',      model: 'cedar_1',     coords: [44.79927,  41.69649]                       },
-    { id: 'cedar-28',      model: 'cedar_1',     coords: [44.79849,  41.69631]                       },
-    { id: 'cedar-29',      model: 'cedar_1',     coords: [44.79867,  41.69639]                       },
-    { id: 'cedar-30',      model: 'cedar_2',     coords: [44.79880,  41.69645]                       },
-    { id: 'cedar-31',      model: 'cedar_1',     coords: [44.79971,  41.69654]                       },
-    { id: 'cedar-32',      model: 'cedar_2',     coords: [44.79964,  41.69662]                       },
-    { id: 'cedar-33',      model: 'cedar_1',     coords: [44.79831,  41.69625]                       },
+    //these ones to update the coordiantes
+    { id: 'cedar-28',      model: 'cedar_1',     coords: [44.79851,  41.69627]                       },
+    { id: 'cedar-29',      model: 'cedar_2',     coords: [44.79869,  41.69636]                       },
+    { id: 'cedar-30',      model: 'cedar_1',     coords: [44.79882,  41.69641]                       },
+    { id: 'cedar-31',      model: 'cedar_1',     coords: [44.79832,  41.69622]                       },
+    { id: 'cedar-32',      model: 'cedar_2',     coords: [44.79821,  41.69618]                       },
+    //these ones to update the coordiantes
+    { id: 'cedar-33',      model: 'cedar_1',     coords: [44.79971,  41.69654]                       },
+    { id: 'cedar-34',      model: 'cedar_2',     coords: [44.79964,  41.69662]                       },
 
     // ── Bushes ───────────────────────────────────────────────────
     { id: 'bush-1',        model: 'bush',        coords: [44.79908,  41.69699, 2],   rotationY: 0    },
