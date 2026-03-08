@@ -25,14 +25,17 @@ const INSTANCES = [
     { id: 'fordtransit-5', model: 'fordtransit', coords: [44.79993,  41.69759],      rotationY: 115  },
 
     // ── Barricades ──────────────────────────
-    { id: 'barricade-N',   model: 'barricadeN',  coords: [44.79864,  41.69686, 1],   rotationY: 28    },
+    { id: 'barricade-E',   model: 'barricadeE',  coords: [44.79864,  41.69686, 1],   rotationY: 28   },
 
     // ── Police cars ──────────────────────────────────────────────
     { id: 'policecar-1',   model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },
     { id: 'policecar-2',   model: 'policecar',   coords: [44.798720, 41.697360],     rotationY: 300  },
    
     // ── Ford Transits (police minivans) ──────────────────────────
-    { id: 'watertruck',    model: 'watertruck',  coords: [44.79800, 41.69662],       rotationY: 120  },
+    { id: 'watertruck',    model: 'watertruck',  coords: [44.79851, 41.69691],       rotationY: 120  },
+    { id: 'watertruck',    model: 'watertruck',  coords: [44.79855, 41.69687],       rotationY: 120  },
+    { id: 'watertruck',    model: 'watertruck',  coords: [44.79859, 41.69683],       rotationY: 120  },
+
 
     // ── Policemen ────────────────────────────────────────────────
     { id: 'policeman-1',   model: 'policeman',   coords: [44.798500, 41.697700],     rotationY: 0    },
@@ -57,7 +60,6 @@ const INSTANCES = [
     { id: 'pine-2',        model: 'pinetree',    coords: [44.79905,  41.69649]                       },
     { id: 'pine-3',        model: 'pinetree',    coords: [44.79835,  41.69758]                       },
     { id: 'pine-4',        model: 'pinetree',    coords: [44.79916,  41.69762]                       },
-
 
     // ── Cedars ───────────────────────────────────────────────────
     { id: 'cedar-1',       model: 'cedar_1',     coords: [44.79756,  41.69903]                       },
