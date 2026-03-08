@@ -8,10 +8,11 @@ const MODELS = {
     busStop:     { url: BASE_URL + 'bus_stop_new.glb',     scale: { x: 1,    y: 1,    z: 1    } },
     bus:         { url: BASE_URL + 'bus_new.glb',          scale: { x: 1,    y: 1,    z: 1    } },
     fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1,    y: 1,    z: 1    } },
-    barricade:   { url: BASE_URL + 'barricade.glb',        scale: { x: 1,    y: 1,    z: 1    } },
+    barricade:   { url: BASE_URL + 'barricade.glb',        scale: { x: 2,    y: 2,    z: 2    } },
     skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1,    y: 1,    z: 1    } },
     policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: 1,    y: 1,    z: 1    } },
     policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 0.6,  y: 0.6,  z: 0.6  } },
+    watertruck:  { url: BASE_URL + 'watertruck.glb',       scale: { x: 1,    y: 1,    z: 1    } },
     imeditv:     { url: BASE_URL + 'imedi_drone.glb',      scale: { x: 2.5,  y: 2.5,  z: 2.5  } },
     akatsuki:    { url: BASE_URL + 'akatsuki.glb',         scale: { x: 1.5,  y: 1.5,  z: 1.5  } },
     cross:       { url: BASE_URL + 'cross.glb',            scale: { x: 0.35, y: 0.35, z: 0.35 } },
@@ -22,5 +23,4 @@ const MODELS = {
     mercedes:    { url: BASE_URL + 'mercedes_benz.glb',    scale: { x: 1,    y: 1,    z: 1    } },
     cedar_1:     { url: BASE_URL + 'cedar-1.glb',          scale: { x: 1,    y: 1,    z: 1    } },
     cedar_2:     { url: BASE_URL + 'cedar-2.glb',          scale: { x: .75,  y: .75,  z: .75  } },
-
 };
