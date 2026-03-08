@@ -6,7 +6,7 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
 
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDOqhSiuRb8x1lKhn6BWj8FTLGw7v-vD5S8edkrPzYF3PrpTSGNouOtZjZhL-XJTs/exec';
-const AKATSUKI_HEIGHT = 1; // metres above ground for user figures
+const AKATSUKI_HEIGHT = 1;
 
 // ── Map ───────────────────────────────────────────────────────────────────────
 const map = new mapboxgl.Map({
@@ -28,29 +28,35 @@ map.scrollZoom.enable();
 // ── State ─────────────────────────────────────────────────────────────────────
 let tb;
 let akatsukiCounter = 0;
+let recordCounter   = 0;
 const userFigures   = [];
-const genderKa      = { male: 'მამრობითი', female: 'მდედრობითი', other: 'სხვა' };
+
+// ── Auto-generated name ───────────────────────────────────────────────────────
+function generateName(n) {
+    return 'ანონიმური აკაცუკი #' + n;
+}
 
 // ── Tooltip ───────────────────────────────────────────────────────────────────
 const tooltip = document.getElementById('tooltip');
 
-function showTooltip(x, y, nickname, age, gender) {
-    tooltip.innerHTML     = `<strong>${nickname}</strong><br>ასაკი: ${age}<br>სქესი: ${genderKa[gender] || gender}`;
+function showTooltip(x, y, label) {
+    tooltip.innerHTML     = '<strong>' + label + '</strong>';
     tooltip.style.left    = (x + 14) + 'px';
     tooltip.style.top     = (y - 10) + 'px';
     tooltip.style.display = 'block';
 }
 function hideTooltip() { tooltip.style.display = 'none'; }
 
-map.on('mousemove', (e) => {
+map.on('mousemove', function(e) {
     if (!userFigures.length) return;
-    const mp = e.point;
-    let found = false;
-    for (const fig of userFigures) {
-        const fp = map.project([fig.coords[0], fig.coords[1]]);
-        const dx = mp.x - fp.x, dy = mp.y - fp.y;
+    var mp = e.point;
+    var found = false;
+    for (var i = 0; i < userFigures.length; i++) {
+        var fig = userFigures[i];
+        var fp = map.project([fig.coords[0], fig.coords[1]]);
+        var dx = mp.x - fp.x, dy = mp.y - fp.y;
         if (Math.sqrt(dx * dx + dy * dy) < 20) {
-            showTooltip(mp.x, mp.y, fig.nickname, fig.age, fig.gender);
+            showTooltip(mp.x, mp.y, fig.label);
             found = true;
             break;
         }
@@ -59,16 +65,12 @@ map.on('mousemove', (e) => {
 });
 
 // ── Core loader ───────────────────────────────────────────────────────────────
-// Appending ?i=<id> to the URL forces Threebox to treat each instance as a
-// separate asset, preventing the shared-mesh bug that causes duplicate models
-// to overwrite each other.
-
 function loadAndPlace(inst, onDone) {
-    const def = MODELS[inst.model];
+    var def = MODELS[inst.model];
     if (!def) { if (onDone) onDone(); return; }
 
-    const alt    = inst.coords[2] || 0;
-    const lngLat = [inst.coords[0], inst.coords[1]];
+    var alt    = inst.coords[2] || 0;
+    var lngLat = [inst.coords[0], inst.coords[1]];
 
     tb.loadObj({
         type:     'glb',
@@ -77,16 +79,15 @@ function loadAndPlace(inst, onDone) {
         units:    'meters',
         rotation: { x: 90, y: inst.rotationY || 0, z: 0 },
         anchor:   'bottom',
-    }, (obj) => {
-        obj.setCoords([...lngLat, alt]);
+    }, function(obj) {
+        obj.setCoords([lngLat[0], lngLat[1], alt]);
         tb.add(obj);
         if (onDone) onDone();
     });
 }
 
-// Sequential queue — one model at a time, guaranteed order, no race conditions
 function loadQueue(list, onDone) {
-    let i = 0;
+    var i = 0;
     function next() {
         if (i >= list.length) { if (onDone) onDone(); return; }
         loadAndPlace(list[i++], next);
@@ -101,63 +102,58 @@ function buildAkatsukiInst(coords) {
         id:        'user-' + akatsukiCounter,
         model:     'akatsuki',
         coords:    [coords[0], coords[1], AKATSUKI_HEIGHT],
-        rotationY: 90,
+        rotationY: 0,
     };
 }
 
-// On page load: fetch all rows, build inst list, drain as one sequential queue
 async function loadExistingFigures() {
     try {
-        const res  = await fetch(APPS_SCRIPT_URL);
-        const data = await res.json();
-
-        const instList = [];
-        data.forEach((row) => {
+        var res  = await fetch(APPS_SCRIPT_URL);
+        var data = await res.json();
+        recordCounter = data.length;
+        var instList = [];
+        data.forEach(function(row, i) {
             if (!row.latitude || !row.longitude) return;
-            const coords = [parseFloat(row.longitude), parseFloat(row.latitude)];
+            var coords = [parseFloat(row.longitude), parseFloat(row.latitude)];
             instList.push(buildAkatsukiInst(coords));
-            userFigures.push({
-                nickname: row.nickname || 'ანონიმური',
-                age:      row.age      || '?',
-                gender:   row.gender   || '?',
-                coords,
-            });
+            userFigures.push({ label: generateName(i + 1), coords: coords });
         });
-
         loadQueue(instList, null);
-
-    } catch (err) {
-        console.warn('ფიგურების ჩატვირთვა ვერ მოხერხდა:', err);
-    }
+    } catch(e) {}
 }
 
-// Live submission: single immediate load, no queue needed
-function placeAkatsukiNow(coords, nickname, age, gender) {
-    const inst = buildAkatsukiInst(coords);
+function placeAkatsukiNow(coords) {
+    recordCounter++;
+    var inst = buildAkatsukiInst(coords);
     loadAndPlace(inst, null);
-    userFigures.push({ nickname, age, gender, coords });
+    userFigures.push({ label: generateName(recordCounter), coords: coords });
 }
+
+// ── UI elements ───────────────────────────────────────────────────────────────
+var akatsukiBtn  = document.getElementById('akatsuki-btn');
+var placeHint    = document.getElementById('place-hint');
+var overlay      = document.getElementById('modal-overlay');
+var formView     = document.getElementById('form-view');
+var successMsg   = document.getElementById('success-msg');
+var submitBtn    = document.getElementById('submit-btn');
+var aboutBtn     = document.getElementById('about-btn');
+var aboutOverlay = document.getElementById('about-overlay');
+var aboutClose   = document.getElementById('about-close');
+var aboutBlur    = document.getElementById('about-blur');
 
 // ── Place mode ────────────────────────────────────────────────────────────────
-let placingMode    = false;
-let pendingCoords  = null;
-let selectedGender = null;
+var placingMode   = false;
+var pendingCoords = null;
 
-const akatsukiBtn = document.getElementById('akatsuki-btn');
-const placeHint   = document.getElementById('place-hint');
-const overlay     = document.getElementById('modal-overlay');
-const formView    = document.getElementById('form-view');
-const successMsg  = document.getElementById('success-msg');
-const submitBtn   = document.getElementById('submit-btn');
-
-akatsukiBtn.addEventListener('click', () => {
+akatsukiBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
     placingMode = !placingMode;
     akatsukiBtn.classList.toggle('active', placingMode);
     map.getCanvas().classList.toggle('placing', placingMode);
     placeHint.style.display = placingMode ? 'block' : 'none';
 });
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && placingMode) {
         placingMode = false;
         akatsukiBtn.classList.remove('active');
@@ -166,67 +162,60 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-map.on('click', (e) => {
+map.on('click', function(e) {
     if (!placingMode) return;
+
     pendingCoords = [e.lngLat.lng, e.lngLat.lat];
     placingMode   = false;
     akatsukiBtn.classList.remove('active');
     map.getCanvas().classList.remove('placing');
     placeHint.style.display = 'none';
 
-    selectedGender = null;
-    document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
-    document.getElementById('nickname').value = '';
-    document.getElementById('age').value      = '';
-    document.getElementById('q1').value       = '';
-    document.getElementById('q2').value       = '';
-    document.getElementById('q3').value       = '';
-    ['q1', 'q2', 'q3'].forEach(id => {
-        document.getElementById(id + '-count').textContent = '0';
-    });
+    // Reset form fields
+    document.getElementById('q1').value = '';
+    document.getElementById('q2').value = '';
+    document.getElementById('q3').value = '';
+    document.getElementById('q1-count').textContent = '0';
+    document.getElementById('q2-count').textContent = '0';
+    document.getElementById('q3-count').textContent = '0';
+
     formView.style.display   = 'block';
     successMsg.style.display = 'none';
     submitBtn.textContent    = 'გაგზავნა';
     submitBtn.disabled       = false;
+
     overlay.classList.add('visible');
 });
 
-document.querySelectorAll('.gender-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        selectedGender = btn.dataset.gender;
-    });
+// Character counters
+document.getElementById('q1').addEventListener('input', function() {
+    document.getElementById('q1-count').textContent = this.value.length;
+});
+document.getElementById('q2').addEventListener('input', function() {
+    document.getElementById('q2-count').textContent = this.value.length;
+});
+document.getElementById('q3').addEventListener('input', function() {
+    document.getElementById('q3-count').textContent = this.value.length;
 });
 
-['q1', 'q2', 'q3'].forEach(id => {
-    document.getElementById(id).addEventListener('input', function () {
-        document.getElementById(id + '-count').textContent = this.value.length;
-    });
-});
-
-overlay.addEventListener('click', (e) => {
+// Close modal on backdrop click
+overlay.addEventListener('click', function(e) {
+    e.stopPropagation();
     if (e.target === overlay) overlay.classList.remove('visible');
 });
 
-submitBtn.addEventListener('click', async () => {
-    const nickname = document.getElementById('nickname').value.trim();
-    const age      = document.getElementById('age').value.trim();
-    if (!nickname)       { alert('გთხოვთ შეიყვანოთ მეტსახელი.');  return; }
-    if (!age)            { alert('გთხოვთ შეიყვანოთ ასაკი.');      return; }
-    if (!selectedGender) { alert('გთხოვთ აირჩიოთ სქესი.');        return; }
-
+// ── Submit ────────────────────────────────────────────────────────────────────
+submitBtn.addEventListener('click', async function() {
     submitBtn.textContent = '⏳ იგზავნება...';
     submitBtn.disabled    = true;
 
-    const payload = {
-        nickname, age,
-        gender:    selectedGender,
+    var payload = {
+        entry:     recordCounter + 1,
         latitude:  pendingCoords[1],
         longitude: pendingCoords[0],
-        q1: document.getElementById('q1').value.trim(),
-        q2: document.getElementById('q2').value.trim(),
-        q3: document.getElementById('q3').value.trim(),
+        q1:        document.getElementById('q1').value.trim(),
+        q2:        document.getElementById('q2').value.trim(),
+        q3:        document.getElementById('q3').value.trim(),
     };
 
     try {
@@ -236,29 +225,28 @@ submitBtn.addEventListener('click', async () => {
             headers: { 'Content-Type': 'application/json' },
             body:    JSON.stringify(payload),
         });
-    } catch (err) {
-        console.error('გაგზავნის შეცდომა:', err);
-    }
+    } catch(e) {}
 
-    placeAkatsukiNow(pendingCoords, nickname, age, selectedGender);
+    placeAkatsukiNow(pendingCoords);
 
     formView.style.display   = 'none';
     successMsg.style.display = 'block';
-    setTimeout(() => overlay.classList.remove('visible'), 3000);
+    setTimeout(function() { overlay.classList.remove('visible'); }, 3000);
 });
 
 // ── About panel ───────────────────────────────────────────────────────────────
-const aboutBtn     = document.getElementById('about-btn');
-const aboutOverlay = document.getElementById('about-overlay');
-const aboutClose   = document.getElementById('about-close');
-const aboutBlur    = document.getElementById('about-blur');
-
-aboutBtn.addEventListener('click',   () => aboutOverlay.classList.add('visible'));
-aboutClose.addEventListener('click', () => aboutOverlay.classList.remove('visible'));
-aboutBlur.addEventListener('click',  () => aboutOverlay.classList.remove('visible'));
+aboutBtn.addEventListener('click', function() {
+    aboutOverlay.classList.add('visible');
+});
+aboutClose.addEventListener('click', function() {
+    aboutOverlay.classList.remove('visible');
+});
+aboutBlur.addEventListener('click', function() {
+    aboutOverlay.classList.remove('visible');
+});
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-map.on('style.load', () => {
+map.on('style.load', function() {
     map.setFog({});
 
     tb = new Threebox(
@@ -278,6 +266,6 @@ map.on('style.load', () => {
                 loadQueue(INSTANCES, null);
             });
         },
-        render() { tb.update(); }
+        render: function() { tb.update(); }
     });
 });

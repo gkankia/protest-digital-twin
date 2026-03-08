@@ -146,45 +146,11 @@ body { margin: 0; padding: 0; }
     max-height: 90vh;
     overflow-y: auto;
 }
-#modal h2           { margin: 0 0 6px; font-size: 20px; color: #e94560; }
-#modal p.subtitle   { margin: 0 0 20px; font-size: 13px; color: #aaa; }
+#modal h2         { margin: 0 0 6px; font-size: 20px; color: #e94560; }
+#modal p.subtitle { margin: 0 0 20px; font-size: 13px; color: #aaa; }
 
-.field-group        { margin-bottom: 16px; }
-.field-group label  { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
-.field-group input[type="text"],
-.field-group input[type="number"] {
-    width: 100%;
-    background: #0f0f1a;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 14px;
-    padding: 10px;
-    box-sizing: border-box;
-    transition: border 0.2s;
-    font-family: 'BPG Arial Caps', sans-serif;
-}
-.field-group input:focus { outline: none; border-color: #e94560; }
-
-.gender-group { display: flex; gap: 10px; margin-bottom: 20px; }
-.gender-btn {
-    flex: 1;
-    padding: 10px 6px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    background: #0f0f1a;
-    color: #ccc;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-    font-family: 'BPG Arial Caps', sans-serif;
-}
-.gender-btn:hover             { border-color: #e94560; color: #fff; }
-.gender-btn.selected          { border-color: #e94560; background: #e94560; color: #fff; }
-
-.question-block               { margin-bottom: 16px; }
-.question-block label         { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
+.question-block       { margin-bottom: 16px; }
+.question-block label { display: block; font-size: 13px; color: #aaa; margin-bottom: 6px; }
 .question-block textarea {
     width: 100%;
     height: 70px;
@@ -201,6 +167,18 @@ body { margin: 0; padding: 0; }
 }
 .question-block textarea:focus { outline: none; border-color: #e94560; }
 .char-count { font-size: 11px; color: #555; text-align: right; margin-top: 3px; }
+
+/* Consent notice inside form */
+.consent-notice {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #0f0f1a;
+}
 
 #submit-btn {
     width: 100%;
@@ -268,7 +246,7 @@ body { margin: 0; padding: 0; }
     border-radius: 20px;
     padding: 36px 40px;
     width: 90%;
-    max-width: 500px;
+    max-width: 520px;
     color: #fff;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -292,9 +270,23 @@ body { margin: 0; padding: 0; }
     font-size: 14px;
     line-height: 1.85;
     color: rgba(255,255,255,0.85);
-    margin: 0 0 16px;
+    margin: 0 0 14px;
+}
+#about-panel h3 {
+    font-size: 13px;
+    color: #e94560;
+    margin: 20px 0 8px;
+    font-family: 'BPG Nino Medium Condenced', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 #about-panel p:last-of-type { margin-bottom: 0; }
+#about-panel .privacy-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    margin: 0 0 10px;
+}
 #about-close {
     position: absolute;
     top: 16px;
@@ -325,9 +317,19 @@ body { margin: 0; padding: 0; }
         <button id="about-close">×</button>
         <h2>პროექტის შესახებ</h2>
         <span class="about-subtitle">პროტესტის ციფრული ტყუპი · თბილისი, საქართველო</span>
+
         <p>ეს არის პროტესტის სივრცის ცოცხალი ციფრული ტყუპი, რომელიც ინახავს მათ ყოფნას და ხმებს, ვინც გამოვიდა. რუკაზე ყოველი ფიგურა წარმოადგენს რეალურ ადამიანს, რომელმაც თავი განათავსა აქ.</p>
-        <p>„გამოდი რუსთაველზე" ღილაკზე დაჭერით შენ ტოვებ მუდმივ კვალს — შენი ფიგურა, შენი ასაკი და სიტყვები ხდება ამ ისტორიული მომენტის ნაწილი.</p>
+        <p>„გამოდი რუსთაველზე" ღილაკზე დაჭერით შენ ტოვებ მუდმივ კვალს — შენი ფიგურა და სიტყვები ხდება ამ ისტორიული მომენტის ნაწილი.</p>
         <p>პროექტი შეიქმნა კოლექტიური ყოფნის დასაფიქსირებლად და იმისათვის, რომ ყველა მონაწილეს მიეცეს ხმა, რომელიც გაგრძელდება პროტესტის შემდეგაც.</p>
+
+        <h3>კონფიდენციალობა და მონაცემები</h3>
+        <p class="privacy-note">ეს პროექტი აკადემიური კვლევის მიზნებისთვის შეიქმნა. შემდეგი ინფორმაცია ეხება მონაცემთა შეგროვებას:</p>
+        <p class="privacy-note"><strong>რას ვაგროვებთ:</strong> თქვენ მიერ გაზიარებული ტექსტური პასუხები და რუკაზე არჩეული მდებარეობა. არ ვაგროვებთ სახელს, ასაკს, ან პირადობის დამადასტურებელ ინფორმაციას. თქვენი ფიგურა ავტომატურად მიენიჭება ანონიმური სახელი.</p>
+        <p class="privacy-note"><strong>სიმბოლური განთავსება:</strong> რუკაზე ფიგურის განთავსება სიმბოლურია და არ წარმოადგენს თქვენს რეალურ ფიზიკურ მდებარეობას. GPS-ის ან მოწყობილობის მდებარეობის მონაცემები არ გროვდება. თქვენ თავად ირჩევთ, სად განათავსოთ ფიგურა რუკაზე.</p>
+        <p class="privacy-note"><strong>IP მისამართი:</strong> ჩვენ არ ვინახავთ IP მისამართებს. თუმცა, რუკის ფილები მოწოდებულია Mapbox-ის მიერ, რომელმაც შესაძლოა დაარეგისტრიროს ტექნიკური მოთხოვნები საკუთარი კონფიდენციალობის პოლიტიკის შესაბამისად.</p>
+        <p class="privacy-note"><strong>გადაცემა:</strong> თქვენი პასუხები გადაიცემა დაშიფრული HTTPS კავშირით. ბრაუზერის Network პანელში ტექნიკური მონაცემები შეიძლება ხილული იყოს — ეს სტანდარტული ბრაუზერის ქცევაა და არ ნიშნავს მონაცემების გაჟონვას.</p>
+        <p class="privacy-note"><strong>შენახვა:</strong> მონაცემები ინახება დაცულ Google Sheets-ში და გამოიყენება მხოლოდ სამეცნიერო კვლევის მიზნებისთვის. მონაცემები არ გაიყიდება და არ გაზიარდება მესამე მხარეებთან.</p>
+        <p class="privacy-note">მონაწილეობა ნებაყოფლობითია. გაგზავნით თქვენ ეთანხმებით ამ პირობებს.</p>
     </div>
 </div>
 
@@ -338,24 +340,9 @@ body { margin: 0; padding: 0; }
 <!-- Registration modal -->
 <div id="modal-overlay">
     <div id="modal">
-        <div id="form-view">
+        <div id="form-view" style="display:block;">
             <h2>დაარეგისტრირე შენი ყოფნა</h2>
-            <p class="subtitle">შენი ფიგურა დარჩება რუკაზე ყველასათვის სანახავად.</p>
-
-            <div class="field-group">
-                <label>მეტსახელი</label>
-                <input type="text" id="nickname" maxlength="50" placeholder="შეიყვანე მეტსახელი...">
-            </div>
-            <div class="field-group">
-                <label>ასაკი</label>
-                <input type="number" id="age" min="1" max="120" placeholder="შენი ასაკი">
-            </div>
-
-            <div class="gender-group">
-                <div class="gender-btn" data-gender="male">♂ მამრობითი</div>
-                <div class="gender-btn" data-gender="female">♀ მდედრობითი</div>
-                <div class="gender-btn" data-gender="other">⚬ სხვა</div>
-            </div>
+            <p class="subtitle">შენი ფიგურა დარჩება რუკაზე ყველასათვის სანახავად. მონაწილეობა ანონიმურია.</p>
 
             <div class="question-block">
                 <label>1. რატომ ხარ დღეს აქ?</label>
@@ -373,10 +360,14 @@ body { margin: 0; padding: 0; }
                 <div class="char-count"><span id="q3-count">0</span>/200</div>
             </div>
 
+            <div class="consent-notice">
+                მონაცემები შეგროვდება ანონიმურად აკადემიური კვლევის მიზნებისთვის. IP მისამართი არ ინახება. გაგზავნით თქვენ ეთანხმებით მონაწილეობას.
+            </div>
+
             <button id="submit-btn">გაგზავნა</button>
         </div>
 
-        <div id="success-msg">
+        <div id="success-msg" style="display:none;">
             <div class="checkmark">✅</div>
             <h2 style="color:#e94560;margin-top:16px;">შენ რუკაზე ხარ!</h2>
             <p>შენი პასუხი დაფიქსირდა.<br>შენი ფიგურა ახლა ყველასთვის ხილვადია.</p>

@@ -23,9 +23,7 @@ const INSTANCES = [
     { id: 'fordtransit-3', model: 'fordtransit', coords: [44.79947,  41.69757],      rotationY: 115  },
     { id: 'fordtransit-4', model: 'fordtransit', coords: [44.79956,  41.69761],      rotationY: 115  },
     { id: 'fordtransit-5', model: 'fordtransit', coords: [44.79993,  41.69759],      rotationY: 115  },
-    { id: 'fordtransit-6', model: 'fordtransit', coords: [44.80003,  41.69663],      rotationY: 115  },
-    { id: 'fordtransit-7', model: 'fordtransit', coords: [44.80012,  41.69667],      rotationY: 115  },
-    { id: 'fordtransit-8', model: 'fordtransit', coords: [44.80021,  41.69670],      rotationY: 115  },
+
 
     // ── Police cars ──────────────────────────────────────────────
     { id: 'policecar-1',   model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },
