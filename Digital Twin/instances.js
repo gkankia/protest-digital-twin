@@ -25,7 +25,7 @@ const INSTANCES = [
     { id: 'fordtransit-5', model: 'fordtransit', coords: [44.79993,  41.69759],      rotationY: 115  },
 
     // ── Barricades ──────────────────────────
-    { id: 'barricade-1',   model: 'barricade',   coords: [44.79859,  41.69694, 5],   rotationY: 0    },
+    { id: 'barricade-N',   model: 'barricadeN',  coords: [44.79864,  41.69692, 1],   rotationY: 25    },
 
     // ── Police cars ──────────────────────────────────────────────
     { id: 'policecar-1',   model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },

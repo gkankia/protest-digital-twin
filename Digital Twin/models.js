@@ -8,7 +8,7 @@ const MODELS = {
     busStop:     { url: BASE_URL + 'bus_stop_new.glb',     scale: { x: 1,    y: 1,    z: 1    } },
     bus:         { url: BASE_URL + 'bus_new.glb',          scale: { x: 1,    y: 1,    z: 1    } },
     fordtransit: { url: BASE_URL + 'ford_transit_new.glb', scale: { x: 1,    y: 1,    z: 1    } },
-    barricade:   { url: BASE_URL + 'barricade.glb',        scale: { x: 2,    y: 2,    z: 2    } },
+    barricadeN:  { url: BASE_URL + 'barricade.glb',        scale: { x: 1,    y: 1,    z: 1    } },
     skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1,    y: 1,    z: 1    } },
     policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: 1,    y: 1,    z: 1    } },
     policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 0.6,  y: 0.6,  z: 0.6  } },
