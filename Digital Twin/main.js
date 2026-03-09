@@ -5,7 +5,7 @@
 // ── Config ────────────────────────────────────────────────────────────────────
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDOqhSiuRb8x1lKhn6BWj8FTLGw7v-vD5S8edkrPzYF3PrpTSGNouOtZjZhL-XJTs/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6pi7jHevKkHSop1I1lRb4TqvTZSWBAYu70J607yPAV0gIoBE_1nJG-nfmem7UYsQK/exec';
 const AKATSUKI_HEIGHT = 1;
 
 // ── Map ───────────────────────────────────────────────────────────────────────
@@ -209,8 +209,12 @@ submitBtn.addEventListener('click', async function() {
     submitBtn.textContent = '⏳ იგზავნება...';
     submitBtn.disabled    = true;
 
+    var entryNumber = recordCounter + 1;
+    var entryLabel  = generateName(entryNumber);
+
     var payload = {
-        entry:     recordCounter + 1,
+        entry:     entryNumber,
+        label:     entryLabel,
         latitude:  pendingCoords[1],
         longitude: pendingCoords[0],
         q1:        document.getElementById('q1').value.trim(),
@@ -221,8 +225,7 @@ submitBtn.addEventListener('click', async function() {
     try {
         await fetch(APPS_SCRIPT_URL, {
             method:  'POST',
-            mode:    'no-cors',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'text/plain' },
             body:    JSON.stringify(payload),
         });
     } catch(e) {}
