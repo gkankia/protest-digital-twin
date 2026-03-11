@@ -31,10 +31,14 @@ const INSTANCES = [
     { id: 'barricade-W',   model: 'barricadeW',  coords: [44.79720,  41.69630, 1],   rotationY: 28   },
 
 
-
     // ── Police cars ──────────────────────────────────────────────
-    { id: 'policecar-1',   model: 'policecar',   coords: [44.798620, 41.697320, 1],  rotationY: 300  },
-    { id: 'policecar-2',   model: 'policecar',   coords: [44.798720, 41.697360],     rotationY: 300  },
+    { id: 'policecar-1',   model: 'policecar',   coords: [44.79862, 41.69732, 1],  rotationY: 300  },
+    { id: 'policecar-2',   model: 'policecar',   coords: [44.79872, 41.69736, 1],  rotationY: 300  },
+    { id: 'policecar-3',   model: 'policecar',   coords: [44.79899, 41.69712, 1],  rotationY: 300  },
+    { id: 'policecar-4',   model: 'policecar',   coords: [44.79902, 41.69707, 1],  rotationY: 300  },
+    { id: 'policecar-5',   model: 'policecar',   coords: [44.79913, 41.69659, 1],  rotationY: 300  },
+    { id: 'policecar-6',   model: 'policecar',   coords: [44.79921, 41.69662, 1],  rotationY: 300  },
+
    
     // ── Ford Transits (police minivans) ──────────────────────────
     { id: 'watertruck',    model: 'watertruck',  coords: [44.79851, 41.69691],       rotationY: 120  },
