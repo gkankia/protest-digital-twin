@@ -5,7 +5,7 @@
 // ── Config ────────────────────────────────────────────────────────────────────
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6pi7jHevKkHSop1I1lRb4TqvTZSWBAYu70J607yPAV0gIoBE_1nJG-nfmem7UYsQK/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkJBCR8AL3vg7yYPigMklJdWWP8mS9clKbZ54fbXE8iz78lG2pCRIOqSooheDwDCoN/exec';
 const AKATSUKI_HEIGHT = 1;
 
 // ── Map ───────────────────────────────────────────────────────────────────────
@@ -112,11 +112,13 @@ async function loadExistingFigures() {
         var data = await res.json();
         recordCounter = data.length;
         var instList = [];
-        data.forEach(function(row, i) {
+        data.forEach(function(row) {
             if (!row.latitude || !row.longitude) return;
             var coords = [parseFloat(row.longitude), parseFloat(row.latitude)];
             instList.push(buildAkatsukiInst(coords));
-            userFigures.push({ label: generateName(i + 1), coords: coords });
+            // Use the label stored in the sheet, fall back to entry number
+            var label = row.label || generateName(row.entry || akatsukiCounter);
+            userFigures.push({ label: label, coords: coords });
         });
         loadQueue(instList, null);
     } catch(e) {}
