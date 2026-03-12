@@ -12,7 +12,7 @@ const MODELS = {
     barricadeE:  { url: BASE_URL + 'barricade_east.glb',   scale: { x: 1,    y: 1,    z: 1    } },
     barricadeS:  { url: BASE_URL + 'barricade_south.glb',  scale: { x: 1,    y: 1,    z: 1    } },
     barricadeW:  { url: BASE_URL + 'barricade_west.glb',   scale: { x: 1,    y: 1,    z: 1    } },
-    skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1.2,  y: 1.2,  z: 1.2  } },
+    skoda:       { url: BASE_URL + 'skoda.glb',            scale: { x: 1.5,  y: 1.5,  z: 1.5  } },
     policecar:   { url: BASE_URL + 'police_vehicle.glb',   scale: { x: .8,   y: .8,   z: .8   } },
     policeman:   { url: BASE_URL + 'policeman.glb',        scale: { x: 0.6,  y: 0.6,  z: 0.6  } },
     watertruck:  { url: BASE_URL + 'watertruck.glb',       scale: { x: 1,    y: 1,    z: 1    } },
