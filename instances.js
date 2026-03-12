@@ -39,8 +39,8 @@ const INSTANCES = [
     { id: 'policecar-6',   model: 'policecar',   coords: [44.79921, 41.69662, 1],    rotationY: 300  },
 
     // ── Skoda ────────────────────────────────────────────────────
-    { id: 'skoda-1',       model: 'skoda',       coords: [44.79920, 41.69721, 1],    rotationY: 300  },    
-    { id: 'skoda-2',       model: 'skoda',       coords: [44.79923, 41.69716, 1],    rotationY: 300  },
+    { id: 'skoda-1',       model: 'skoda',       coords: [44.79920, 41.69721, 1],    rotationY: 210  },    
+    { id: 'skoda-2',       model: 'skoda',       coords: [44.79923, 41.69716, 1],    rotationY: 210  },
 
     // ── Ford Transits (police minivans) ──────────────────────────
     { id: 'watertruck',    model: 'watertruck',  coords: [44.79851, 41.69691],       rotationY: 120  },
