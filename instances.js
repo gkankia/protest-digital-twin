@@ -117,7 +117,7 @@ const INSTANCES = [
     { id: 'cedar-14',      model: 'cedar_1',     coords: [44.79968,  41.69595]                       },
     { id: 'cedar-15',      model: 'cedar_2',     coords: [44.79978,  41.69580]                       },
     { id: 'cedar-16',      model: 'cedar_1',     coords: [44.79989,  41.69631]                       },
-    { id: 'cedar-17',      model: 'cedar_1',     coords: [44.80020,  41.69584]                       },
+    //{ id: 'cedar-17',      model: 'cedar_1',     coords: [44.80020,  41.69584]                       },
     { id: 'cedar-18',      model: 'cedar_1',     coords: [44.80032,  41.69569]                       },
     { id: 'cedar-19',      model: 'cedar_1',     coords: [44.80038,  41.69560]                       },
     { id: 'cedar-20',      model: 'cedar_2',     coords: [44.80000,  41.69531]                       },
@@ -160,6 +160,12 @@ const INSTANCES = [
     { id: 'cedar-57',      model: 'cedar_1',     coords: [44.80047,  41.69520]                       },
     { id: 'cedar-58',      model: 'cedar_1',     coords: [44.80040,  41.69536]                       },
     { id: 'cedar-59',      model: 'cedar_1',     coords: [44.80056,  41.69506]                       },
+    // National Museum Trees
+    { id: 'cedar-60',      model: 'cedar_1',     coords: [44.79993,  41.69621]                       },
+    { id: 'cedar-61',      model: 'cedar_1',     coords: [44.79997,  41.69615]                       },
+    { id: 'cedar-62',      model: 'cedar_1',     coords: [44.80004,  41.69602]                       },
+    { id: 'cedar-63',      model: 'cedar_1',     coords: [44.80011,  41.69593]                       },
+    { id: 'cedar-64',      model: 'cedar_1',     coords: [44.80016,  41.69586]                       },
 
     // ── Bushes ───────────────────────────────────────────────────
     { id: 'bush-1',        model: 'bush',        coords: [44.79908,  41.69699, 2],   rotationY: 0    },
