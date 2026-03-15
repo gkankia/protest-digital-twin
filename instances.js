@@ -77,7 +77,7 @@ const INSTANCES = [
     { id: 'streetlamp-1',  model: 'lampstreet',  coords: [44.79911,  41.69738],      rotationY: 115  }, //rotation 115 on the right side of the road
     { id: 'streetlamp-2',  model: 'lampstreet',  coords: [44.79935,  41.69704],      rotationY: 115  },
     { id: 'streetlamp-3',  model: 'lampstreet',  coords: [44.79959,  41.69670],      rotationY: 115  },
-    { id: 'streetlamp-4',  model: 'lampstreet',  coords: [44.80042,  41.69541],      rotationY: 115  },
+    { id: 'streetlamp-4',  model: 'lampstreet',  coords: [44.80042,  41.69541],      rotationY: 130  },
     { id: 'streetlamp-5',  model: 'lampstreet',  coords: [44.80052,  41.69510],      rotationY: 115  },
     { id: 'streetlamp-6',  model: 'lampstreet',  coords: [44.80076,  41.69475],      rotationY: 115  },
     { id: 'streetlamp-7',  model: 'lampstreet',  coords: [44.80095,  41.69448],      rotationY: 115  },
