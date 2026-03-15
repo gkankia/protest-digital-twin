@@ -82,7 +82,6 @@ const INSTANCES = [
     { id: 'streetlamp-6',  model: 'lampstreet',  coords: [44.80076,  41.69475],      rotationY: 115  },
     { id: 'streetlamp-7',  model: 'lampstreet',  coords: [44.80095,  41.69448],      rotationY: 115  },
 
-
     // ── Pine trees ───────────────────────────────────────────────
     { id: 'pine-1',        model: 'pinetree',    coords: [44.79893,  41.69646]                       },
     { id: 'pine-2',        model: 'pinetree',    coords: [44.79905,  41.69649]                       },
