@@ -48,7 +48,15 @@ const INSTANCES = [
     { id: 'watertruck',    model: 'watertruck',  coords: [44.79859, 41.69683],       rotationY: 120  },
 
     // ── Policemen ────────────────────────────────────────────────
-    { id: 'policeman-1',   model: 'policeman',   coords: [44.798500, 41.697700],     rotationY: 0    },
+    { id: 'policeman-1',   model: 'policeman',   coords: [44.79901, 41.69716],     rotationY: 0    },
+    { id: 'policeman-2',   model: 'policeman',   coords: [44.79901, 41.69714],     rotationY: 0    },
+    { id: 'policeman-3',   model: 'policeman',   coords: [44.79902, 41.69713],     rotationY: 0    },
+    { id: 'policeman-4',   model: 'policeman',   coords: [44.79903, 41.69712],     rotationY: 0    },
+    { id: 'policeman-5',   model: 'policeman',   coords: [44.79904, 41.69710],     rotationY: 0    },
+    { id: 'policeman-6',   model: 'policeman',   coords: [44.79906, 41.69709],     rotationY: 0    },
+    { id: 'policeman-7',   model: 'policeman',   coords: [44.79907, 41.69707],     rotationY: 0    },
+    { id: 'policeman-8',   model: 'policeman',   coords: [44.79907, 41.69706],     rotationY: 0    },
+    { id: 'policeman-9',   model: 'policeman',   coords: [44.79908, 41.69705],     rotationY: 0    },
 
     // ── Drone ────────────────────────────────────────────────────
     { id: 'drone-1',       model: 'imeditv',     coords: [44.798500, 41.697700, 20], rotationY: 0    },
