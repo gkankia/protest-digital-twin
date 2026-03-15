@@ -39,10 +39,10 @@ const INSTANCES = [
     { id: 'policecar-6',   model: 'policecar',   coords: [44.79921, 41.69662, 1],    rotationY: 300  },
 
     // ── Skoda ────────────────────────────────────────────────────
-    { id: 'skoda-1',       model: 'skoda',       coords: [44.79920, 41.69721, 1],    rotationY: 180  },    
-    { id: 'skoda-2',       model: 'skoda',       coords: [44.79923, 41.69716, 1],    rotationY: 180  },
-    { id: 'skoda-3',       model: 'skoda',       coords: [44.79926, 41.69711, 1],    rotationY: 180  },
-    { id: 'skoda-4',       model: 'skoda',       coords: [44.79930, 41.69706, 1],    rotationY: 180  },
+    { id: 'skoda-1',       model: 'skoda',       coords: [44.79920, 41.69721, 1],    rotationY: 210  },    
+    { id: 'skoda-2',       model: 'skoda',       coords: [44.79923, 41.69716, 1],    rotationY: 210  },
+    { id: 'skoda-3',       model: 'skoda',       coords: [44.79926, 41.69711, 1],    rotationY: 210  },
+    { id: 'skoda-4',       model: 'skoda',       coords: [44.79930, 41.69706, 1],    rotationY: 210  },
 
     // ── Ford Transits (police minivans) ──────────────────────────
     { id: 'watertruck-1',  model: 'watertruck',  coords: [44.79851, 41.69691],       rotationY: 120  },
@@ -54,14 +54,14 @@ const INSTANCES = [
 
     // ── Policemen ────────────────────────────────────────────────
     { id: 'policeman-1',   model: 'policeman',   coords: [44.79901, 41.69716],     rotationY: 0    },
-    { id: 'policeman-2',   model: 'policeman',   coords: [44.79901, 41.69714],     rotationY: 0    },
-    { id: 'policeman-3',   model: 'policeman',   coords: [44.79902, 41.69713],     rotationY: 0    },
-    { id: 'policeman-4',   model: 'policeman',   coords: [44.79903, 41.69712],     rotationY: 0    },
+    { id: 'policeman-2',   model: 'policeman',   coords: [44.79901, 41.69714],     rotationY: 30    },
+    { id: 'policeman-3',   model: 'policeman',   coords: [44.79902, 41.69713],     rotationY: 20    },
+    { id: 'policeman-4',   model: 'policeman',   coords: [44.79903, 41.69712],     rotationY: 45    },
     { id: 'policeman-5',   model: 'policeman',   coords: [44.79904, 41.69710],     rotationY: 0    },
     { id: 'policeman-6',   model: 'policeman',   coords: [44.79906, 41.69709],     rotationY: 0    },
-    { id: 'policeman-7',   model: 'policeman',   coords: [44.79907, 41.69707],     rotationY: 0    },
-    { id: 'policeman-8',   model: 'policeman',   coords: [44.79907, 41.69706],     rotationY: 0    },
-    { id: 'policeman-9',   model: 'policeman',   coords: [44.79908, 41.69705],     rotationY: 0    },
+    { id: 'policeman-7',   model: 'policeman',   coords: [44.79907, 41.69707],     rotationY: 60    },
+    { id: 'policeman-8',   model: 'policeman',   coords: [44.79907, 41.69706],     rotationY: 75    },
+    { id: 'policeman-9',   model: 'policeman',   coords: [44.79908, 41.69705],     rotationY: 180    },
 
     // ── Drone ────────────────────────────────────────────────────
     { id: 'drone-1',       model: 'imeditv',     coords: [44.798500, 41.697700, 20], rotationY: 0    },
