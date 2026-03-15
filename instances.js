@@ -48,9 +48,9 @@ const INSTANCES = [
     { id: 'watertruck-1',  model: 'watertruck',  coords: [44.79851, 41.69691],       rotationY: 120  },
     { id: 'watertruck-2',  model: 'watertruck',  coords: [44.79855, 41.69687],       rotationY: 120  },
     { id: 'watertruck-3',  model: 'watertruck',  coords: [44.79859, 41.69683],       rotationY: 120  },
-    { id: 'watertruck-4',  model: 'watertruck',  coords: [44.80104, 41.69396],       rotationY: 120  },
-    { id: 'watertruck-5',  model: 'watertruck',  coords: [44.80113, 41.69399],       rotationY: 120  },
-    { id: 'watertruck-6',  model: 'watertruck',  coords: [44.80122, 41.69402],       rotationY: 120  },
+    { id: 'watertruck-4',  model: 'watertruck',  coords: [44.80104, 41.69396],       rotationY: 210  },
+    { id: 'watertruck-5',  model: 'watertruck',  coords: [44.80113, 41.69399],       rotationY: 210  },
+    { id: 'watertruck-6',  model: 'watertruck',  coords: [44.80122, 41.69402],       rotationY: 210  },
 
     // ── Policemen ────────────────────────────────────────────────
     { id: 'policeman-1',   model: 'policeman',   coords: [44.79901, 41.69716],     rotationY: 0    },
@@ -112,15 +112,24 @@ const INSTANCES = [
     { id: 'cedar-25',      model: 'cedar_2',     coords: [44.79791,  41.69907]                       },
     { id: 'cedar-26',      model: 'cedar_1',     coords: [44.79816,  41.69880]                       },
     { id: 'cedar-27',      model: 'cedar_1',     coords: [44.79927,  41.69649]                       },
-    //these ones to update the coordiantes
     { id: 'cedar-28',      model: 'cedar_1',     coords: [44.79851,  41.69627]                       },
     { id: 'cedar-29',      model: 'cedar_2',     coords: [44.79869,  41.69636]                       },
     { id: 'cedar-30',      model: 'cedar_1',     coords: [44.79882,  41.69641]                       },
     { id: 'cedar-31',      model: 'cedar_1',     coords: [44.79832,  41.69622]                       },
     { id: 'cedar-32',      model: 'cedar_2',     coords: [44.79821,  41.69618]                       },
-    //these ones to update the coordiantes
     { id: 'cedar-33',      model: 'cedar_1',     coords: [44.79971,  41.69654]                       },
     { id: 'cedar-34',      model: 'cedar_2',     coords: [44.79964,  41.69662]                       },
+
+    { id: 'cedar-35',      model: 'cedar_1',     coords: [44.79778,  41.69602]                       },
+    { id: 'cedar-36',      model: 'cedar_2',     coords: [44.79760,  41.69594]                       },
+    { id: 'cedar-37',      model: 'cedar_1',     coords: [44.79846,  41.69750]                       },
+    { id: 'cedar-38',      model: 'cedar_1',     coords: [44.79888,  41.69774]                       },
+    { id: 'cedar-39',      model: 'cedar_1',     coords: [44.79836,  41.69862]                       },
+    { id: 'cedar-40',      model: 'cedar_2',     coords: [44.79838,  41.69846]                       },
+    { id: 'cedar-41',      model: 'cedar_1',     coords: [44.79815,  41.69816]                       },
+    { id: 'cedar-42',      model: 'cedar_1',     coords: [44.79896,  41.69766]                       },
+    { id: 'cedar-43',      model: 'cedar_2',     coords: [44.79857,  41.69783]                       },
+    { id: 'cedar-44',      model: 'cedar_1',     coords: [44.79830,  41.69799]                       },
 
     // ── Bushes ───────────────────────────────────────────────────
     { id: 'bush-1',        model: 'bush',        coords: [44.79908,  41.69699, 2],   rotationY: 0    },
