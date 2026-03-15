@@ -82,6 +82,12 @@ const INSTANCES = [
     { id: 'streetlamp-6',  model: 'lampstreet',  coords: [44.80076,  41.69475],      rotationY: 115  },
     { id: 'streetlamp-7',  model: 'lampstreet',  coords: [44.80095,  41.69448],      rotationY: 115  },
 
+    // ── Chichinadze trees ───────────────────────────────────────────────
+    { id: 'mini-1',        model: 'pinetree',    coords: [44.79893,  41.69646]                       },
+    { id: 'mini-2',        model: 'pinetree',    coords: [44.79905,  41.69649]                       },
+    { id: 'mini-3',        model: 'pinetree',    coords: [44.79835,  41.69758]                       },
+    { id: 'mini-4',        model: 'pinetree',    coords: [44.79916,  41.69762]                       },
+
     // ── Pine trees ───────────────────────────────────────────────
     { id: 'pine-1',        model: 'pinetree',    coords: [44.79893,  41.69646]                       },
     { id: 'pine-2',        model: 'pinetree',    coords: [44.79905,  41.69649]                       },

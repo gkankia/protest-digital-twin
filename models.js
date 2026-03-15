@@ -26,4 +26,7 @@ const MODELS = {
     mercedes:    { url: BASE_URL + 'mercedes_benz.glb',    scale: { x: 1,    y: 1,    z: 1    } },
     cedar_1:     { url: BASE_URL + 'cedar-1.glb',          scale: { x: 1,    y: 1,    z: 1    } },
     cedar_2:     { url: BASE_URL + 'cedar-2.glb',          scale: { x: .75,  y: .75,  z: .75  } },
+    minitree:    { url: BASE_URL + 'mini-tree-1.glb',      scale: { x: 1,    y: 1,    z: 1    } },
+    tree:        { url: BASE_URL + 'tree.glb',             scale: { x: 1,    y: 1,    z: 1    } },
+
 };
