@@ -74,9 +74,13 @@ const INSTANCES = [
     { id: 'lampbig-2',     model: 'lampbig',     coords: [44.79911,  41.69693],      rotationY: 0    },
 
     // ── Street lamps ─────────────────────────────────────────────
-    { id: 'streetlamp-1',  model: 'lampstreet',  coords: [44.79911,  41.69738],      rotationY: 115  },
+    { id: 'streetlamp-1',  model: 'lampstreet',  coords: [44.79911,  41.69738],      rotationY: 115  }, //rotation 115 on the right side of the road
     { id: 'streetlamp-2',  model: 'lampstreet',  coords: [44.79935,  41.69704],      rotationY: 115  },
     { id: 'streetlamp-3',  model: 'lampstreet',  coords: [44.79959,  41.69670],      rotationY: 115  },
+    { id: 'streetlamp-4',  model: 'lampstreet',  coords: [44.79959,  41.69670],      rotationY: 115  },
+    { id: 'streetlamp-5',  model: 'lampstreet',  coords: [44.79959,  41.69670],      rotationY: 115  },
+    { id: 'streetlamp-6',  model: 'lampstreet',  coords: [44.79959,  41.69670],      rotationY: 115  },
+
 
     // ── Pine trees ───────────────────────────────────────────────
     { id: 'pine-1',        model: 'pinetree',    coords: [44.79893,  41.69646]                       },
