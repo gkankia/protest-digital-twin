@@ -5,7 +5,7 @@
 // ── Config ────────────────────────────────────────────────────────────────────
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9yam9uZTkwIiwiYSI6ImNrZ3R6M2FvdTBwbmwycXBibGRqM2w2enYifQ.BxjvFSGqefuC9yFCrXC-nQ';
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzkJBCR8AL3vg7yYPigMklJdWWP8mS9clKbZ54fbXE8iz78lG2pCRIOqSooheDwDCoN/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHNVMo7ncLYMTq9KjeOBMML2aPBy1Hybf-iBCI0DDRjRk52r1sACKrCUD0df1FQ9pW/exec';
 const AKATSUKI_HEIGHT = 1;
 
 // ── Map ───────────────────────────────────────────────────────────────────────
